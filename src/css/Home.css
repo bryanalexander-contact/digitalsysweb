@@ -1,0 +1,192 @@
+/* --- VARIABLES PROFESIONALES --- */
+:root {
+  --ghibli-sky-deep: #2c5d7d; /* Celeste más oscuro y sólido */
+  --ghibli-blue-dark: #1e3a5a;
+  --brass-gold: #c2a05d;
+  --parchment: #fdf6e3;
+  --calcifer-fire: #e67e22;
+  --ink-soft: #2c3e50;
+}
+
+.home-container {
+  background-color: var(--parchment);
+  color: var(--ink-soft);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+}
+
+/* --- HERO: Celeste Sólido con Destellos --- */
+#hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ghibli-sky-deep); /* ¡El color sólido que pediste! */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* Eliminar los pseudoelementos ::before si ya los sustituye el canvas */
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Aseguramos que el canvas esté detrás del texto */
+}
+
+#hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  z-index: 2; /* Texto por encima del canvas */
+  background: linear-gradient(45deg, white, var(--brass-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+#hero p {
+  color: var(--parchment); /* Color para resaltar sobre el fondo oscuro */
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  opacity: 0.9;
+  z-index: 2;
+  font-style: italic;
+  max-width: 600px;
+  margin-top: 10px;
+}
+
+button {
+  z-index: 2; /* Para que el botón también esté por encima del canvas */
+  /* ... tus estilos de botón ... */
+}
+
+/* --- SECCIONES: (Mantienen la magia y
+
+@keyframes rotateMagic {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  z-index: 1;
+  background: linear-gradient(45deg, var(--ghibli-blue), var(--brass-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
+}
+
+/* --- SERVICIOS: Tarjetas Flotantes con Aura --- */
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 50px;
+  padding: 100px 10%;
+  background: transparent;
+}
+
+.service-item {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 60px 40px;
+  border: 1px solid rgba(194, 160, 93, 0.2);
+  border-radius: 4px; /* Un poco más suave */
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+
+/* Aura de color al pasar el mouse */
+.service-item:hover {
+  transform: translateY(-15px);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--brass-gold);
+  box-shadow: 0 30px 60px rgba(194, 160, 93, 0.15);
+}
+
+.service-item::after {
+  content: '✦';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: var(--brass-gold);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.service-item:hover::after {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* --- PORTAFOLIO: Efecto "Cuadro Alquímico" --- */
+.project-item {
+  position: relative;
+  border: 1px solid var(--brass-gold);
+  margin: 10px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.project-item::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.5s;
+  z-index: 2;
+}
+
+.project-item:hover::before {
+  left: 150%;
+}
+
+/* --- BOTONES: El destello de Calcifer --- */
+button {
+  all: unset;
+  cursor: pointer;
+  background: var(--ghibli-blue);
+  color: white;
+  padding: 18px 45px;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: 0.5s;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(30, 58, 90, 0.2);
+}
+
+button:hover {
+  background: var(--calcifer-fire);
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(230, 126, 34, 0.4);
+}
+
+/* --- CONTACTO: El cielo nocturno --- */
+#contact {
+  background: radial-gradient(circle at top right, #2c3e50, #1a2a3a);
+  padding: 120px 10%;
+  color: var(--parchment);
+  text-align: center;
+  position: relative;
+}
+
+/* Agregando "estrellas" sutiles */
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
+}
