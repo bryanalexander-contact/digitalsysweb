@@ -1,169 +1,78 @@
-/* --- ANIMACIÓN DE ENTRADA --- */
-@keyframes slideInFromRight {
-  0% {
-    transform: translate(100%, -50%); /* Empieza fuera a la derecha */
-    opacity: 0;
-  }
-  100% {
-    transform: translate(-50%, -50%); /* Su posición central final */
-    opacity: 1;
-  }
-
-}
-/* --- HEADER: La Isla Flotante --- */
-header {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1200px;
-  height: 70px;
-  z-index: 1000;
-  
-  /* Efecto Cristal */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  
-  /* Bordes de Latón sutiles */
-  border: 1px solid rgba(194, 160, 93, 0.3);
-  border-radius: 50px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
-
-
-  animation: slideInFromRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  
-  /* Importante: para que no parpadee al cargar, asegúrate de que el estado inicial sea invisible */
-  opacity: 0;
-  
-  /* Mantenemos el centrado absoluto que ya teníamos */
-  position: fixed;
-  top: 20px;
-  left: 50%;
-}
-
-/* Efecto al hacer scroll (opcional: se vuelve más sólido) */
-header.scrolled {
-  background: rgba(30, 58, 90, 0.8);
-  border-color: var(--brass-gold);
-}
-
-/* --- LOGO --- */
-header .logo h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  color: var(--parchment);
-  letter-spacing: 1px;
-  margin: 0;
-  background: linear-gradient(45deg, #fff, var(--brass-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* --- NAVEGACIÓN --- */
-header nav {
-  display: flex;
-  gap: 25px;
-}
-
-header nav a {
-  text-decoration: none;
-  color: var(--parchment);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  position: relative;
-  transition: 0.3s;
-}
-
-header nav a::after {
-  content: '✦';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  color: var(--brass-gold);
-  opacity: 0;
-  transition: 0.3s;
-}
-
-header nav a:hover {
-  color: var(--brass-gold);
-}
-
-header nav a:hover::after {
-  opacity: 1;
-  bottom: -10px;
-}
-
-/* --- BOTÓN IDIOMA: Estilo Medallón --- */
-#lang-toggle {
-  background: transparent;
-  border: 1px solid var(--brass-gold);
-  color: var(--brass-gold);
-  padding: 5px 15px;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: 0.3s;
-  font-family: 'Montserrat', sans-serif;
-  margin: 0; /* Reseteamos margen del global */
-}
-
-#lang-toggle:hover {
-  background: var(--brass-gold);
-  color: var(--ghibli-blue-dark);
-}
-
-/* --- RESPONSIVE --- */
-
-/* Tablets */
-@media (max-width: 1024px) {
-  header {
-    width: 95%;
-    padding: 0 20px;
-  }
-  header nav {
-    gap: 15px;
-  }
-}
-
-/* Móviles (Pantallas pequeñas) */
-@media (max-width: 768px) {
-  header nav {
-    display: none; /* Aquí podrías implementar un menú hamburguesa */
-  }
-  
-  header {
-    height: 60px;
+/* Header.css */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-  }
-
-  header .logo h1 {
-    font-size: 1.2rem;
-  }
+    padding: 0 10%;
+    background-color: transparent; /* Empieza transparente */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1000;
 }
 
-
-header nav a {
-  opacity: 0;
-  animation: fadeInLinks 0.5s ease forwards;
+/* Clase que se activa al hacer scroll */
+.main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    height: 70px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-header nav a:nth-child(1) { animation-delay: 0.8s; }
-header nav a:nth-child(2) { animation-delay: 1.0s; }
-header nav a:nth-child(3) { animation-delay: 1.2s; }
-header nav a:nth-child(4) { animation-delay: 1.4s; }
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--text-main);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
 
-@keyframes fadeInLinks {
-  to { opacity: 1; }
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.6;
+}
+
+/* Botón Cotizar */
+.btn-quote {
+    background-color: var(--text-main);
+    color: white !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-quote:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Menú móvil básico */
+@media (max-width: 900px) {
+    .nav-links {
+        display: none; /* Aquí podrías implementar un menú hamburguesa más adelante */
+    }
 }

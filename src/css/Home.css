@@ -1,192 +1,431 @@
-/* --- VARIABLES PROFESIONALES --- */
+/* --- VARIABLES ESTILO CLAY --- */
 :root {
-  --ghibli-sky-deep: #2c5d7d; /* Celeste más oscuro y sólido */
-  --ghibli-blue-dark: #1e3a5a;
-  --brass-gold: #c2a05d;
-  --parchment: #fdf6e3;
-  --calcifer-fire: #e67e22;
-  --ink-soft: #2c3e50;
+  --bg-white: #ffffff;
+  --text-main: #000000;
+  --text-muted: #555555;
+  --accent-blue: #0052ff; /* Un azul profesional para detalles */
+  --grid-color: rgba(0, 0, 0, 0.03);
 }
 
 .home-container {
-  background-color: var(--parchment);
-  color: var(--ink-soft);
-  font-family: 'Montserrat', sans-serif;
-  overflow-x: hidden;
-  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  background-color: var(--bg-white);
+  color: var(--text-main);
+  font-family: 'Inter', 'Montserrat', sans-serif;
+  /* El secreto de Clay: un fondo con un grid muy tenue */
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
-/* --- HERO: Celeste Sólido con Destellos --- */
+/* --- HERO --- */
 #hero {
   height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--ghibli-sky-deep); /* ¡El color sólido que pediste! */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  /* Eliminar los pseudoelementos ::before si ya los sustituye el canvas */
+  padding: 0 10%;
+}
+
+#hero h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  margin-bottom: 30px;
+  color: var(--text-main);
+}
+
+#hero p {
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 20px;
+}
+
+/* --- BOTONES ESTILO CLAY --- */
+.btn-primary, .btn-secondary {
+  all: unset;
+  cursor: pointer;
+  padding: 18px 35px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: 0.3s all ease;
+}
+
+.btn-primary {
+  background: var(--text-main);
+  color: white;
+}
+
+.btn-secondary {
+  border: 1px solid #ddd;
+  color: var(--text-main);
+}
+
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+/* --- SECCIÓN SOBRE NOSOTROS --- */
+.about-section {
+  padding: 150px 10%;
+  text-align: center;
+}
+
+.about-section h2 { font-size: 3rem; margin-bottom: 20px; }
+.about-section p { font-size: 1.2rem; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+
+/* --- SERVICIOS EN ZIG-ZAG --- */
+.service-row {
+  display: flex;
+  align-items: center;
+  padding: 100px 10%;
+  gap: 50px;
+}
+
+.service-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.service-text { flex: 1; }
+.service-image { 
+  flex: 1; 
+  background: #f4f4f4; 
+  height: 400px; 
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #ccc;
+  overflow: hidden;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- CONTACTO --- */
+#contact {
+  padding: 150px 10%;
+  background: #fafafa;
+  border-top: 1px solid #eee;
+  text-align: center;
 }
 
 .hero-canvas {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0; /* Aseguramos que el canvas esté detrás del texto */
+  top: 0; left: 0;
+  pointer-events: none;
+  opacity: 0.4; /* Muy sutil */
 }
 
-#hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
-  z-index: 2; /* Texto por encima del canvas */
-  background: linear-gradient(45deg, white, var(--brass-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
-  line-height: 1.1;
+
+
+/* --- BENTO GRID PROFESIONAL --- */
+.bento-section {
+  padding: 80px 10%;
+  background-color: var(--bg-white);
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 300px);
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.bento-item {
+  background: #ffffff;
+  border: 1px solid #eeeeee; /* Borde casi invisible */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elevación sutil al pasar el mouse - Estilo Clay */
+.bento-item:hover {
+  border-color: var(--text-main);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+/* Configuración de tamaños de las cajas (Asimetría) */
+.item-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.item-medium {
+  grid-column: span 2;
+}
+
+/* Tipografía dentro del Bento */
+.bento-item h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 
-#hero p {
-  color: var(--parchment); /* Color para resaltar sobre el fondo oscuro */
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  opacity: 0.9;
-  z-index: 2;
-  font-style: italic;
-  max-width: 600px;
-  margin-top: 10px;
+.bento-item h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text-main);
 }
 
-button {
-  z-index: 2; /* Para que el botón también esté por encima del canvas */
-  /* ... tus estilos de botón ... */
+.bento-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-/* --- SECCIONES: (Mantienen la magia y
-
-@keyframes rotateMagic {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Responsivo */
+@media (max-width: 900px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .item-large, .item-medium {
+    grid-column: span 1;
+    grid-row: span 1;
+    height: 300px;
+  }
 }
 
-#hero h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 8vw, 6rem);
-  z-index: 1;
-  background: linear-gradient(45deg, var(--ghibli-blue), var(--brass-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
-}
 
-/* --- SERVICIOS: Tarjetas Flotantes con Aura --- */
-.services-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 50px;
-  padding: 100px 10%;
-  background: transparent;
-}
 
-.service-item {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  padding: 60px 40px;
-  border: 1px solid rgba(194, 160, 93, 0.2);
-  border-radius: 4px; /* Un poco más suave */
-  position: relative;
-  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
-}
-
-/* Aura de color al pasar el mouse */
-.service-item:hover {
-  transform: translateY(-15px);
-  background: rgba(255, 255, 255, 0.9);
-  border-color: var(--brass-gold);
-  box-shadow: 0 30px 60px rgba(194, 160, 93, 0.15);
-}
-
-.service-item::after {
-  content: '✦';
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: var(--brass-gold);
-  opacity: 0;
-  transition: 0.4s;
-}
-
-.service-item:hover::after {
-  opacity: 1;
-  transform: rotate(90deg);
-}
-
-/* --- PORTAFOLIO: Efecto "Cuadro Alquímico" --- */
-.project-item {
-  position: relative;
-  border: 1px solid var(--brass-gold);
-  margin: 10px;
-  overflow: hidden;
-  transition: 0.5s;
-}
-
-.project-item::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-  transition: 0.5s;
-  z-index: 2;
-}
-
-.project-item:hover::before {
-  left: 150%;
-}
-
-/* --- BOTONES: El destello de Calcifer --- */
-button {
-  all: unset;
-  cursor: pointer;
-  background: var(--ghibli-blue);
-  color: white;
-  padding: 18px 45px;
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  transition: 0.5s;
-  position: relative;
-  box-shadow: 0 10px 20px rgba(30, 58, 90, 0.2);
-}
-
-button:hover {
-  background: var(--calcifer-fire);
-  transform: scale(1.05);
-  box-shadow: 0 15px 30px rgba(230, 126, 34, 0.4);
-}
-
-/* --- CONTACTO: El cielo nocturno --- */
-#contact {
-  background: radial-gradient(circle at top right, #2c3e50, #1a2a3a);
+/* --- SECCIÓN SERVICIOS --- */
+.services-section {
   padding: 120px 10%;
-  color: var(--parchment);
-  text-align: center;
-  position: relative;
+  background-color: var(--bg-white);
 }
 
-/* Agregando "estrellas" sutiles */
-#contact::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.1;
+.section-header {
+  margin-bottom: 80px;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.section-header h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+/* --- FILAS DE SERVICIOS --- */
+.services-container {
+  display: flex;
+  flex-direction: column;
+  gap: 150px; /* Mucho espacio entre servicios */
+}
+
+.service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* El truco del Zig-Zag: Las filas pares invierten su orden */
+.service-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.service-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.service-content h4 {
+  font-family: 'Inter', sans-serif;
+  color: var(--accent-blue);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.service-content h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: -1px;
+}
+
+.service-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.service-visual {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px; /* Casi recto, muy profesional */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.05); /* Sombra muy suave */
+  aspect-ratio: 16 / 9;
+}
+
+.service-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Efecto al pasar sobre la fila */
+.service-row:hover .service-visual img {
+  transform: scale(1.03);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .service-row, .service-row:nth-child(even) {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .service-content {
+    max-width: 100%;
+  }
+}
+
+
+
+/* --- SECCIÓN FAQ (ESTILO CLAY ANTES DEL FOOTER) --- */
+.faq-section {
+    background-color: #0e0e0e; /* Negro grisáceo profundo solicitado */
+    padding: 120px 10%;
+    color: #ffffff; /* Texto claro sobre fondo oscuro */
+}
+
+.faq-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.faq-header {
+    margin-bottom: 60px;
+}
+
+.faq-header h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.faq-grid {
+    border-top: 1px solid #2a2a2a;
+}
+
+/* Estructura del Acordeón */
+.faq-item {
+    border-bottom: 1px solid #2a2a2a;
+    list-style: none;
+}
+
+.faq-item summary {
+    padding: 35px 0;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* Quitar flecha por defecto en Chrome/Safari */
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary:hover {
+    color: #888888;
+}
+
+.faq-answer {
+    padding-bottom: 40px;
+    color: #aaaaaa;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    /* Animación suave */
+    animation: slideDown 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Icono Personalizado + / - */
+.faq-icon {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.faq-icon::before, .faq-icon::after {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Línea horizontal */
+.faq-icon::before {
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+/* Línea vertical */
+.faq-icon::after {
+    width: 2px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+/* Animación del icono al abrir */
+details[open] .faq-icon::after {
+    transform: translateX(-50%) rotate(90deg);
+    opacity: 0;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive FAQ */
+@media (max-width: 768px) {
+    .faq-header h2 { font-size: 2.5rem; }
+    .faq-item summary { font-size: 1.1rem; padding: 25px 0; }
+    .faq-answer { font-size: 1rem; }
 }
