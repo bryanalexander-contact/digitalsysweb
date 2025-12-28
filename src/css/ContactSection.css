@@ -1,0 +1,128 @@
+:root {
+  --bg-color: #ffffff;
+  --text-main: #000000;
+  --text-secondary: #666666;
+  --accent: #000000;
+  --border-color: #e0e0e0;
+  --font-family: 'Inter', sans-serif;
+}
+
+.contact-container {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  padding: 60px 8%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Ajuste del título reducido */
+.hero-title {
+  font-size: 5rem; /* Antes 8rem, ahora más pequeño */
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: -2px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  max-width: 600px;
+  line-height: 1.4;
+  margin-bottom: 3rem;
+  color: var(--text-secondary);
+}
+
+.hero-links {
+  display: flex;
+  gap: 60px;
+}
+
+.link-group span {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.contact-link {
+  font-size: 1.3rem;
+  color: var(--text-main);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border 0.3s;
+}
+
+.contact-link:hover {
+  border-bottom: 2px solid var(--accent);
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 80px 0;
+}
+
+/* Form Section */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 40px;
+}
+
+.form-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.direct-channels {
+  margin: 30px 0;
+}
+
+.channel-item {
+  margin-bottom: 15px;
+}
+
+.channel-item strong {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.input-group {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group input, .input-group textarea {
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 0;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+button {
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary { background: #000; color: #fff; border: none; }
+.btn-secondary { background: transparent; border: 1px solid #000; }
+
+@media (max-width: 900px) {
+  .hero-title { font-size: 3.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+}
