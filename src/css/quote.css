@@ -1,0 +1,90 @@
+.quote-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 120px 20px;
+  font-family: 'Inter', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.quote-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.badge {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+}
+
+.quote-header h1 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: -2px;
+  margin: 20px 0;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  border: 1px solid #e0e0e0;
+  padding: 50px;
+  border-radius: 24px;
+  transition: border-color 0.3s ease;
+}
+
+.service-card:hover {
+  border-color: #000;
+}
+
+.service-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.price {
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: -3px;
+  margin-bottom: 30px;
+}
+
+.price .symbol { font-size: 2rem; vertical-align: top; margin-right: 5px; }
+.price .code { font-size: 1rem; color: #888; letter-spacing: 0; margin-left: 10px; }
+
+.service-card ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.service-card li { margin-bottom: 15px; }
+
+.btn-select {
+  width: 100%;
+  padding: 18px;
+  border-radius: 50px;
+  border: 1px solid #000;
+  background: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-select.primary {
+  background: #000;
+  color: #fff;
+}
+
+.btn-select:hover {
+  background: #000;
+  color: #fff;
+}

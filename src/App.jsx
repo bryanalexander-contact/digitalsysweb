@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import About from "./pages/About.jsx";
 import Portfolio from "./pages/Portfolio";
 import Services from "./pages/Services";
+import QuotePage from "./pages/QuotePage";
 
 // Componentes temporales si no los tienes creados aún:
 const Contact = () => <div style={{paddingTop: '100px'}}>Página de Contacto</div>;
@@ -24,7 +25,7 @@ function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/quote" element={<Quote />} />
+          <Route path="/quote" element={<QuotePage />} />
         </Routes>
       </main>
 

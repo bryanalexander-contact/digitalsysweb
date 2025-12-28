@@ -76,3 +76,9 @@
         display: none; /* Aquí podrías implementar un menú hamburguesa más adelante */
     }
 }
+
+.header-logo {
+  height: 35px; /* Altura perfecta tipo Clay */
+  width: auto;
+  padding: 5px 0; /* Si quieres un poquito de aire extra */
+}
