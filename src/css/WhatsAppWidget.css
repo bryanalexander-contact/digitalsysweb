@@ -1,0 +1,63 @@
+.whatsapp-bubble {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 9999;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+}
+
+.whatsapp-bubble img {
+    width: 32px;
+    height: 32px;
+}
+
+/* Efecto Clay: Elevación al pasar el mouse */
+.whatsapp-bubble:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+}
+
+/* Tooltip lateral (Opcional, estilo moderno) */
+.whatsapp-bubble .tooltip {
+    position: absolute;
+    right: 80px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-bubble:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    right: 70px;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .whatsapp-bubble {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+    }
+    .whatsapp-bubble .tooltip {
+        display: none; /* Quitamos el texto en móvil para no tapar contenido */
+    }
+}

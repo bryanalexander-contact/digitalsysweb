@@ -3,8 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import WhatsappButton from "./components/WhatsappButton";
-
+import WhatsAppWidget from "./components/WhatsappWidget";
 // Importa tus páginas
 import Home from "./pages/Home";
 import About from "./pages/About.jsx";
@@ -27,7 +26,8 @@ function App() {
       </main>
 
       <Footer />
-      <WhatsappButton />
+      {/* 4. El Widget de WhatsApp (fuera del flujo normal para que flote) */}
+      <WhatsAppWidget />
     </Router>
   );
 }
