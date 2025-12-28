@@ -1,18 +1,19 @@
 import React from "react";
-// 1. Importamos BrowserRouter
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppWidget from "./components/WhatsappWidget";
-// Importa tus páginas
 import Home from "./pages/Home";
 import About from "./pages/About.jsx";
 import Portfolio from "./pages/Portfolio";
 import Services from "./pages/Services";
 
+// Componentes temporales si no los tienes creados aún:
+const Contact = () => <div style={{paddingTop: '100px'}}>Página de Contacto</div>;
+const Quote = () => <div style={{paddingTop: '100px'}}>Página de Cotización</div>;
+
 function App() {
   return (
-    // 2. Envolvemos todo el contenido con <Router>
     <Router>
       <Header />
 
@@ -22,11 +23,12 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/quote" element={<Quote />} />
         </Routes>
       </main>
 
       <Footer />
-      {/* 4. El Widget de WhatsApp (fuera del flujo normal para que flote) */}
       <WhatsAppWidget />
     </Router>
   );

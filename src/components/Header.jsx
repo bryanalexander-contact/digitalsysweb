@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'; // Importante para navegación interna
 import '../css/header.css';
 
 const Header = () => {
@@ -6,7 +7,6 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Si el scroll baja más de 50px, cambiamos el estado
       if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
@@ -15,8 +15,6 @@ const Header = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    
-    // Limpiamos el evento al desmontar el componente
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -24,16 +22,18 @@ const Header = () => {
 
   return (
     <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
-      <a href="/" className="logo">
-        TU MARCA
-      </a>
+      {/* Usamos Link para volver al Home */}
+      <Link to="/" className="logo">
+        DIGITAL SYS
+      </Link>
 
       <nav className="nav-links">
-        <a href="#inicio" className="nav-link">Inicio</a>
-        <a href="#sobre-nosotros" className="nav-link">Sobre nosotros</a>
-        <a href="#servicios" className="nav-link">Servicios</a>
-        <a href="#contacto" className="nav-link">Contacto</a>
-        <a href="#cotizar" className="btn-quote">Cotizar</a>
+        <Link to="/" className="nav-link">Inicio</Link>
+        <Link to="/about" className="nav-link">Sobre nosotros</Link>
+        <Link to="/services" className="nav-link">Servicios</Link>
+        {/* Si no tienes una página de contacto creada, puedes apuntar a /contact o usar un ancla si está en el home */}
+        <Link to="/contact" className="nav-link">Contacto</Link>
+        <Link to="/quote" className="btn-quote">Cotizar</Link>
       </nav>
     </header>
   );

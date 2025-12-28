@@ -113,6 +113,7 @@ export default function Home() {
 </section>
 
 
+        {/* WHY DIGITALSYSWEB */}
 <section id="why-digitalsysweb" class="why-digitalsysweb-section">
     <div class="container">
         <h2 class="section-title">¿Por qué DigitalSysWeb?</h2>
@@ -146,6 +147,45 @@ export default function Home() {
             </div>
         </div>
     </div>
+</section>
+
+      {/* --- SECCIÓN SERVICES ROW (ESTILO CLAY) --- */}
+<section className="services-row-section">
+  <div className="services-row-container">
+    <div className="services-row-content">
+      {/* Etiqueta superior sutil */}
+      <span className="eyebrow">Expertise Digital</span>
+      
+      {/* Título Principal Impactante */}
+      <h2 className="services-row-title">
+        Soluciones que transforman <br /> tu presencia digital.
+      </h2>
+      
+      {/* Subtítulo descriptivo */}
+      <p className="services-row-subtitle">
+        Diseñamos y desarrollamos productos digitales de alto impacto, 
+        enfocados en la conversión y la experiencia de usuario de nivel internacional.
+      </p>
+      
+      {/* Enlace con estilo de botón minimalista */}
+      <a href="/servicios" className="services-link-button">
+        Ver nuestros servicios
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2.5" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+        >
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
     
 

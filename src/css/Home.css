@@ -211,108 +211,6 @@
 
 
 
-/* --- SECCIÓN SERVICIOS --- */
-.services-section {
-  padding: 120px 10%;
-  background-color: var(--bg-white);
-}
-
-.section-header {
-  margin-bottom: 80px;
-}
-
-.eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--text-muted);
-  margin-bottom: 15px;
-}
-
-.section-header h2 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -1.5px;
-}
-
-/* --- FILAS DE SERVICIOS --- */
-.services-container {
-  display: flex;
-  flex-direction: column;
-  gap: 150px; /* Mucho espacio entre servicios */
-}
-
-.service-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 80px;
-}
-
-/* El truco del Zig-Zag: Las filas pares invierten su orden */
-.service-row:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.service-content {
-  flex: 1;
-  max-width: 500px;
-}
-
-.service-content h4 {
-  font-family: 'Inter', sans-serif;
-  color: var(--accent-blue);
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.service-content h3 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 25px;
-  letter-spacing: -1px;
-}
-
-.service-content p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-}
-
-.service-visual {
-  flex: 1.2;
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px; /* Casi recto, muy profesional */
-  box-shadow: 0 30px 60px rgba(0,0,0,0.05); /* Sombra muy suave */
-  aspect-ratio: 16 / 9;
-}
-
-.service-visual img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/* Efecto al pasar sobre la fila */
-.service-row:hover .service-visual img {
-  transform: scale(1.03);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .service-row, .service-row:nth-child(even) {
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
-  }
-  .service-content {
-    max-width: 100%;
-  }
-}
-
 
 
 /* --- SECCIÓN FAQ (ESTILO CLAY ANTES DEL FOOTER) --- */
@@ -428,4 +326,81 @@ details[open] .faq-icon::after {
     .faq-header h2 { font-size: 2.5rem; }
     .faq-item summary { font-size: 1.1rem; padding: 25px 0; }
     .faq-answer { font-size: 1rem; }
+}
+
+
+
+/* --- SECCIÓN SERVICES ROW (ESTILO CLAY) --- */
+.services-row-section {
+    background-color: #f8f8f8; /* Gris muy claro para contraste sutil */
+    padding: 120px 10%;
+    display: flex;
+    justify-content: flex-start; /* Todo alineado a la izquierda */
+}
+
+.services-row-container {
+    max-width: 800px; /* Limitamos el ancho para mantener la elegancia */
+}
+
+.services-row-content .eyebrow {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.services-row-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: #000;
+    margin-bottom: 25px;
+}
+
+.services-row-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+/* Botón de enlace con flecha */
+.services-link-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+}
+
+.services-link-button svg {
+    transition: transform 0.3s ease;
+}
+
+.services-link-button:hover {
+    color: #555;
+    border-bottom: 2px solid #000;
+}
+
+.services-link-button:hover svg {
+    transform: translateX(8px); /* La flecha se mueve a la derecha */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .services-row-section {
+        padding: 80px 5%;
+    }
+    .services-row-title {
+        font-size: 2.5rem;
+    }
 }
