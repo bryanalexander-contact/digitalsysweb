@@ -13,12 +13,12 @@ html, body, #root {
 
 body {
   margin: 0;
-  /* El color de fondo base para que no haya parpadeos blancos */
-  background-color: #fdf6e3; 
-  color: #2a5a7a;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff !important; /* Blanco Nieve */
+  color: #000000 !important; /* Negro Tinta */
 }
+
+/* Si usas Vite, a veces hay un archivo llamado 'App.css' o 'index.css' 
+   que tiene un selector :root con colores. Bórralos o cámbialos a blanco. */
 
 /* Reset de enlaces para que no salgan azules feos */
 a {
