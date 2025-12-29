@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppWidget from "./components/WhatsappWidget";
 import Home from "./pages/Home";
-import About from "./pages/About.jsx";
+import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
 import Services from "./pages/Services";
 import QuotePage from "./pages/QuotePage";
