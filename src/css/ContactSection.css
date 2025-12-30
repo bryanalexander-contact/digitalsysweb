@@ -7,21 +7,23 @@
   --font-family: 'Inter', sans-serif;
 }
 
+/* --- ESTILOS BASE (PC / DESKTOP) --- */
 .contact-container {
   background-color: var(--bg-color);
   color: var(--text-main);
   font-family: var(--font-family);
-  padding: 60px 8%;
   max-width: 1400px;
   margin: 0 auto;
+  /* 211px desde el techo, 8% lateral */
+  padding: 211px 8% 80px 8%; 
 }
 
-/* Ajuste del título reducido */
 .hero-title {
-  font-size: 5rem; /* Antes 8rem, ahora más pequeño */
+  font-size: 5rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
   letter-spacing: -2px;
+  line-height: 1.1;
 }
 
 .hero-subtitle {
@@ -63,7 +65,6 @@
   margin: 80px 0;
 }
 
-/* Form Section */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -71,58 +72,64 @@
   margin-bottom: 40px;
 }
 
-.form-info h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-}
-
-.direct-channels {
-  margin: 30px 0;
-}
-
-.channel-item {
-  margin-bottom: 15px;
-}
-
-.channel-item strong {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
-
-.input-group {
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-}
-
-.input-group input, .input-group textarea {
-  border: none;
-  border-bottom: 1px solid var(--border-color);
-  padding: 12px 0;
-  font-size: 1rem;
-  outline: none;
-  background: transparent;
-}
-
-.button-group {
-  display: flex;
-  gap: 15px;
-  margin-top: 30px;
-}
-
-button {
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s; 
-}
-
+/* Estilos de inputs y botones (iguales a tu original) */
+.form-info h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.direct-channels { margin: 30px 0; }
+.channel-item { margin-bottom: 15px; }
+.channel-item strong { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); }
+.input-group { margin-bottom: 25px; display: flex; flex-direction: column; }
+.input-group input, .input-group textarea { border: none; border-bottom: 1px solid var(--border-color); padding: 12px 0; font-size: 1rem; outline: none; background: transparent; }
+.button-group { display: flex; gap: 15px; margin-top: 30px; }
+button { padding: 14px 28px; border-radius: 50px; font-weight: 500; cursor: pointer; transition: 0.3s; }
 .btn-primary { background: #000; color: #fff; border: none; }
 .btn-secondary { background: transparent; border: 1px solid #000; }
 
-@media (max-width: 900px) {
-  .hero-title { font-size: 3.5rem; }
-  .form-grid { grid-template-columns: 1fr; }
+/* --- TABLET (Hasta 1024px) --- */
+@media (max-width: 1024px) {
+  .contact-container {
+    padding-top: 160px; /* Reducción proporcional del techo */
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .hero-title {
+    font-size: 4rem;
+  }
+  .form-grid {
+    gap: 40px;
+  }
+}
+
+/* --- MÓVIL (Hasta 768px) --- */
+@media (max-width: 768px) {
+  .contact-container {
+    padding-top: 100px; /* Techo más corto para evitar scroll innecesario */
+    padding-bottom: 40px;
+  }
+  
+  .hero-title {
+    font-size: 2.8rem; /* Ajuste para que no se corte la palabra */
+    letter-spacing: -1px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-links {
+    flex-direction: column; /* Links uno debajo del otro */
+    gap: 25px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr; /* Una sola columna: info arriba, form abajo */
+    gap: 50px;
+  }
+
+  .button-group {
+    flex-direction: column; /* Botones apilados */
+  }
+
+  button {
+    width: 100%;
+  }
 }

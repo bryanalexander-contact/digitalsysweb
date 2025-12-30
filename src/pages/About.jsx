@@ -1,106 +1,85 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useAnimationFrame, useMotionValue, useSpring } from 'framer-motion';
-import '../css/about.css';
+import React from 'react';
+import { motion } from 'framer-motion';
+import '../css/About.css';
 
 const About = () => {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [cursorType, setCursorType] = useState('default'); 
-  
-  // Control de movimiento del carrusel
-  const baseVelocity = -1.5; // Velocidad base
-  const velocityX = useMotionValue(baseVelocity);
-  const x = useMotionValue(0);
-  
-  // Suavizado de la velocidad cuando cambia el mouse
-  const smoothVelocity = useSpring(velocityX, { damping: 50, stiffness: 400 });
-
-  const images = ['reliability', 'precision', 'experience', 'scalability', 'speed', 'conversion'];
-
-  // Lógica de movimiento infinito y cambio de dirección
-  useAnimationFrame((t, delta) => {
-    let moveBy = smoothVelocity.get() * (delta / 10);
-    
-    // Si el mouse está en los bordes, alteramos la velocidad
-    if (cursorType === 'left') velocityX.set(-3);
-    else if (cursorType === 'right') velocityX.set(3);
-    else if (cursorType === 'center') velocityX.set(0);
-    else velocityX.set(baseVelocity);
-
-    x.set(x.get() + moveBy);
-  });
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setCursorPos({ x: e.clientX, y: e.clientY });
-
-    const width = rect.width;
-    const relativeX = e.clientX - rect.left;
-
-    if (relativeX < width / 3) setCursorType('left');
-    else if (relativeX > (width / 3) * 2) setCursorType('right');
-    else setCursorType('center');
+  // Animación para el núcleo (movimiento muy lento)
+  const coreAnim = {
+    animate: {
+      y: [0, -20, 0],
+      rotate: [0, 5, 0],
+    },
+    transition: {
+      duration: 15,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
   };
 
+  // Animación para los satélites (revoloteo cercano)
+  const satelliteAnim = (xDist, yDist, duration, delay) => ({
+    animate: {
+      x: [0, xDist, -xDist, 0],
+      y: [0, yDist, -yDist, 0],
+      scale: [1, 1.1, 0.9, 1],
+    },
+    transition: {
+      duration: duration,
+      repeat: Infinity,
+      ease: "linear",
+      delay: delay
+    }
+  });
+
   return (
-    <div className="clay-container">
-      <section className="hero">
-        <div className="hero-content">
-          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="kicker">
-            Digital Sy Web — Est. 2024
-          </motion.span>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }}>
-            Transformamos marcas hacia una <br />
-            <span className="gradient-text">experiencia digital de alto nivel</span>
+    <div className="clay-page-wrapper">
+      <section className="hero-clay">
+        
+        {/* LADO IZQUIERDO: TEXTO */}
+        <div className="hero-content-left">
+          
+          
+          <motion.h1 
+            initial={{ opacity: 0, x: -30 }} 
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 1.2 }}
+          >
+            Transformamos marcas digitales hacia una experiencia<br /> 
+            <span className="accent">de primera calidad</span>
           </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 1 }}
+          >
+            Diseñamos interfaces que respiran autoridad y minimalismo absoluto.
+          </motion.p>
+        </div>
+
+        {/* LADO DERECHO: ECOSISTEMA DE CÍRCULOS */}
+        <div className="sphere-ecosystem">
+          <div className="sphere-container">
+            {/* Círculo Núcleo (más pequeño ahora) */}
+            <motion.div className="core-sphere" {...coreAnim} />
+            
+            {/* Satélites revoloteando cerca */}
+            <motion.div 
+              className="satellite sat-1" 
+              {...satelliteAnim(40, -50, 12, 0)} 
+            />
+            <motion.div 
+              className="satellite sat-2" 
+              {...satelliteAnim(-50, 30, 15, 2)} 
+            />
+          </div>
         </div>
       </section>
 
-      {/* SECCIÓN CARROUSEL GIGANTE */}
-      <section 
-        className="carousel-wrapper"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => setCursorType('default')}
-      >
-        <div 
-          className="carousel-cursor" 
-          style={{ 
-            left: `${cursorPos.x}px`, 
-            top: `${cursorPos.y}px`,
-            opacity: (cursorType === 'left' || cursorType === 'right') ? 1 : 0 
-          }}
-        >
-          <span>{cursorType === 'left' ? '←' : '→'}</span>
-        </div>
-
-        <motion.div className="carousel-track" style={{ x }}>
-          {/* Renderizamos varias veces para asegurar que el scroll sea infinito sin saltos */}
-          {[...Array(4)].map((_, i) => (
-            <React.Fragment key={i}>
-              {images.map((img, index) => (
-                <div key={`${i}-${index}`} className={`carousel-item var-${(index % 6) + 1}`}>
-                  <img src={`/src/assets/images/carrousel/${img}.jpg`} alt={img} />
-                </div>
-              ))}
-            </React.Fragment>
-          ))}
-        </motion.div>
-      </section>
-
-      <section className="value-grid">
-        <div className="value-card">
-          <div className="number">01</div>
-          <h3>Arquitectura de Conversión</h3>
-          <p>Priorizamos la psicología del usuario para reducir el costo de adquisición.</p>
-        </div>
-        <div className="value-card active">
-          <div className="number">02</div>
-          <h3>Escalabilidad Técnica</h3>
-          <p>Preparada para crecer de 100 a 100,000 usuarios sin perder rendimiento.</p>
-        </div>
-        <div className="value-card">
-          <div className="number">03</div>
-          <h3>Identidad de Vanguardia</h3>
-          <p>Dotamos a tu marca de una presencia visual que comunica autoridad.</p>
+      <section className="content-dark">
+        <div className="container">
+          <h2>Resultados Competitivos</h2>
+          <p>Elevamos tu presencia digital al siguiente nivel.</p>
         </div>
       </section>
     </div>
