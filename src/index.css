@@ -1,33 +1,43 @@
-/* Limpieza total de los estilos de Vite */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap");
+
+/* 1. RESET GLOBAL */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* 2. ESTRUCTURA BASE */
 html, body, #root {
   width: 100%;
   min-height: 100vh;
-  /* Quitamos el flex y el place-items que rompían todo */
+  /* El suavizado de fuente estilo Clay.global */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  margin: 0;
-  background-color: #ffffff !important; /* Blanco Nieve */
-  color: #000000 !important; /* Negro Tinta */
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  /* Si quieres el Footer siempre abajo, usa esto: */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Si usas Vite, a veces hay un archivo llamado 'App.css' o 'index.css' 
-   que tiene un selector :root con colores. Bórralos o cámbialos a blanco. */
-
-/* Reset de enlaces para que no salgan azules feos */
+/* 3. RESETS DE ELEMENTOS */
 a {
   text-decoration: none;
   color: inherit;
 }
 
-/* Aseguramos que las imágenes no se salgan de su contenedor */
 img {
   max-width: 100%;
+  height: auto;
   display: block;
+}
+
+/* Para que el contenido principal crezca y empuje al footer */
+main, .home-container {
+  flex: 1;
 }

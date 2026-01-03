@@ -1,5 +1,5 @@
 /* --- HERO SECTION --- */
-#hero-clay {
+.heroClay {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -9,23 +9,24 @@
   overflow: hidden; 
 }
 
-.hero-content-wrapper {
+.heroContentWrapper {
   display: flex;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
-  gap: 80px;
+  gap: 20px; /* Reducido para dar más aire a los extremos */
 }
 
-.hero-left {
+.heroLeft {
+  /* Aumentamos el ancho máximo de la columna para que el texto respire */
   flex: 0 1 900px; 
   z-index: 5;
   text-align: left;
 }
 
-.hero-right {
+.heroRight {
   flex: 1;
   display: flex;
   justify-content: flex-end;
@@ -37,67 +38,75 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.4em;
-  color: var(--text-muted);
+  color: #777777;
   margin-bottom: 24px;
   font-weight: 500;
 }
 
-.hero-title {
-  font-size: clamp(1.8rem, 3.2vw, 2.5rem); 
+.heroTitle {
+  /* Tamaño ideal para que se vea imponente */
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem); 
   font-weight: 800;
-  line-height: 1.25; 
+  line-height: 1.1; 
   letter-spacing: -0.03em;
-  margin-bottom: 48px;
+  margin-bottom: 40px;
   color: #000000;
-  max-width: 100%;
+  
+  /* CAMBIO CLAVE: Quitamos 'ch' y usamos un max-width más generoso */
+  /* 850px es suficiente para estirarse pero forzar la 2da línea antes del final */
+  max-width: 850px; 
+  width: 100%;
+  display: block;
 }
 
-.hero-btns {
+.heroBtns {
   display: flex;
   gap: 20px;
 }
 
-.btn-quote, .btn-contact {
-  padding: 18px 36px;
+.btnQuote, .btnContact {
+  padding: 16px 32px;
   border-radius: 100px;
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #000;
+  display: inline-block;
 }
 
-.btn-quote {
+.btnQuote {
   background-color: #fff;
   color: #000;
 }
 
-.btn-quote:hover {
+.btnQuote:hover {
   background-color: #000;
   color: #fff;
   transform: translateY(-2px);
 }
 
-.btn-contact {
+.btnContact {
   background-color: #000;
   color: #fff;
 }
 
-.btn-contact:hover {
+.btnContact:hover {
   background-color: #fff;
   color: #000;
   transform: translateY(-2px);
 }
 
 /* --- BLOBS --- */
-.blob-container {
+.blobContainer {
   position: relative;
   width: 520px;
   height: 520px;
-  margin-right: -180px; 
+  /* Reducimos el margen negativo para que no "invada" visualmente el espacio del texto */
+  margin-right: -80px; 
 }
 
-.glass-morph {
+.glassMorph {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -105,7 +114,7 @@
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
 }
 
-.blob-main {
+.blobMain {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -113,7 +122,7 @@
   z-index: 1;
 }
 
-.blob-secondary {
+.blobSecondary {
   position: absolute;
   width: 200px;
   height: 200px;
@@ -124,19 +133,33 @@
   z-index: 2;
 }
 
+/* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-  #hero-clay {
+  .heroClay {
     height: auto;
-    padding: 140px 6% 80px 6%;
+    padding: 120px 6% 60px 6%;
   }
-  .hero-content-wrapper {
+  .heroContentWrapper {
     flex-direction: column;
     text-align: center;
-    gap: 60px;
+    gap: 40px;
   }
-  .blob-container {
-    width: 350px;
-    height: 350px;
+  .heroLeft {
+    flex: 1;
+    max-width: 100%;
+  }
+  .heroTitle {
+    font-size: 2.2rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heroBtns {
+    justify-content: center;
+  }
+  .blobContainer {
+    width: 320px;
+    height: 320px;
     margin-right: 0; 
   }
 }

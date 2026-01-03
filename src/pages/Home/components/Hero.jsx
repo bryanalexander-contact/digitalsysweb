@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Zap, Monitor, BarChart3, Layers } from "lucide-react";
-import "../../../css/Hero.css"; // Asegúrate de crear este archivo o mover los estilos
+import styles from "../../../css/Hero.module.css";
 
 export default function Hero() {
-  // Animación para el Morfismo Orgánico (Efecto Líquido)
-  const blobVariants = {
+  // Animación para el Morfismo Orgánico
+  const blobVariants = {    
     animate: {
       borderRadius: [
         "30% 70% 70% 30% / 30% 30% 70% 70%",
@@ -24,14 +23,14 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero-clay">
-      <div className="hero-content-wrapper">
-        {/* LADO IZQUIERDO: TEXTO LIMPIO */}
-        <div className="hero-left">
+    <section className={styles.heroClay}>
+      <div className={styles.heroContentWrapper}>
+        {/* LADO IZQUIERDO: TEXTO */}
+        <div className={styles.heroLeft}>
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="kicker"
+            className={styles.kicker}
           >
             Agencia Digital
           </motion.span>
@@ -40,36 +39,36 @@ export default function Hero() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="hero-title"
+            className={styles.heroTitle}
           >
             Digitalsysweb es una agencia de desarrollo web profesional
           </motion.h1>
 
           <motion.div
-            className="hero-btns"
+            className={styles.heroBtns}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <Link to="/quote" className="btn-quote">
+            <Link to="/quote" className={styles.btnQuote}>
               Cotizar Proyecto
             </Link>
-            <a href="#contact" className="btn-contact">
+            <a href="#contact" className={styles.btnContact}>
               Contactar
             </a>
           </motion.div>
         </div>
 
-        {/* LADO DERECHO: BURBUJA DESPLAZADA */}
-        <div className="hero-right">
-          <div className="blob-container">
+        {/* LADO DERECHO: BURBUJA */}
+        <div className={styles.heroRight}>
+          <div className={styles.blobContainer}>
             <motion.div
-              className="blob-main glass-morph"
+              className={`${styles.blobMain} ${styles.glassMorph}`}
               variants={blobVariants}
               animate="animate"
             />
             <motion.div
-              className="blob-secondary glass-morph"
+              className={`${styles.blobSecondary} ${styles.glassMorph}`}
               animate={{
                 y: [0, 50, -30, 0],
                 x: [0, -30, 40, 0],
