@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import '../css/About.css';
+import '../../css/About.module.css';
 
 const About = () => {
   // Animación para el núcleo (movimiento muy lento)

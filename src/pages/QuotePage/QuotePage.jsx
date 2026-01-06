@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/quote.css';
+import '../../css/quote.module.css';
 
 const QuotePage = () => {
   // Inicializamos el lenguaje mirando la URL o el navegador

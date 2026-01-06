@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/WhatsAppWidget.css';
+import '../css/WhatsAppWidget.module.css';
 
 const WhatsAppWidget = () => {
   const phoneNumber = "56958678410";

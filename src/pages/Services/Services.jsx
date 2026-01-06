@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import '../css/services.css';
+import '../../css/services.module.css';
 
 const servicesData = [
   {
