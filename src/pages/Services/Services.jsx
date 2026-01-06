@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import '../../css/services.module.css';
+import styles from '../../css/services.module.css';
 
 const servicesData = [
   {
@@ -30,14 +30,15 @@ const Services = () => {
 
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.1, // Un poco antes para que se sienta fluido
+      threshold: 0.1,
       rootMargin: "0px 0px -50px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('active');
+          // Importante: Usamos la clase desde el objeto styles
+          entry.target.classList.add(styles.active);
         }
       });
     }, observerOptions);
@@ -50,30 +51,32 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="services-page-wrapper">
-      <section className="hero-services">
-        <div className="content-limit">
-          <h1 className="reveal-text">Un socio integral en la innovación digital de tu negocio.</h1>
-          <p className="reveal-text delay-1">Nuestra experiencia en tecnología y diseño nos permite convertir tu marca en una top profesional dentro de tu rubro.</p>
+    <div className={styles.servicesPageWrapper}>
+      <section className={styles.heroServices}>
+        <div className={styles.contentLimit}>
+          <h1 className={styles.revealText}>Un socio integral en la innovación digital de tu negocio.</h1>
+          <p className={`${styles.revealText} ${styles.delay1}`}>
+            Nuestra experiencia en tecnología y diseño nos permite convertir tu marca en una top profesional dentro de tu rubro.
+          </p>
         </div>
       </section>
 
-      <section className="services-list">
-        <div className="content-limit">
+      <section className={styles.servicesList}>
+        <div className={styles.contentLimit}>
           {servicesData.map((service, index) => (
             <div 
               key={index} 
-              className="service-row-new" 
+              className={styles.serviceRowNew} 
               ref={addToRefs}
             >
-              <div className="service-visual-box">
-                <div className="img-container">
+              <div className={styles.serviceVisualBox}>
+                <div className={styles.imgContainer}>
                   <img src={service.image} alt={service.title} loading="lazy" />
                 </div>
               </div>
-              <div className="service-text-box">
-                <h2 className="service-title-big">{service.title}</h2>
-                <p className="service-desc-big">{service.description}</p>
+              <div className={styles.serviceTextBox}>
+                <h2 className={styles.serviceTitleBig}>{service.title}</h2>
+                <p className={styles.serviceDescBig}>{service.description}</p>
               </div>
             </div>
           ))}

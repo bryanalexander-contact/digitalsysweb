@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import '../../css/quote.module.css';
+import React, { useState } from 'react';
+import styles from '../../css/quote.module.css';
 
 const QuotePage = () => {
-  // Inicializamos el lenguaje mirando la URL o el navegador
   const [language] = useState(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const forcedLang = urlParams.get('lang');
@@ -11,7 +10,6 @@ const QuotePage = () => {
     return (navigator.language || navigator.userLanguage).startsWith('es') ? 'es' : 'en';
   });
 
-  // La moneda se calcula directamente del estado de language
   const currency = {
     symbol: '$',
     code: language === 'es' ? 'CLP' : 'USD'
@@ -35,22 +33,22 @@ const QuotePage = () => {
   const content = pricing[language];
 
   return (
-    <div className="quote-container">
-      <div className="quote-header">
-        <span className="badge">DigitalSysweb Pricing</span>
+    <div className={styles.quoteContainer}>
+      <div className={styles.quoteHeader}>
+        <span className={styles.badge}>DigitalSysweb Pricing</span>
         <h1>{content.title}</h1>
         <p>{content.subtitle}</p>
       </div>
 
-      <div className="cards-grid">
+      <div className={styles.cardsGrid}>
         {/* Card 1: Landing Page */}
-        <div className="service-card">
+        <div className={styles.serviceCard}>
           <h2>Landing Page</h2>
           
-          <div className="price">
-            <span className="symbol">{currency.symbol}</span>
+          <div className={styles.price}>
+            <span className={styles.symbol}>{currency.symbol}</span>
             {content.landing}
-            <span className="code">{currency.code}</span>
+            <span className={styles.code}>{currency.code}</span>
           </div>
 
           <ul>
@@ -58,19 +56,19 @@ const QuotePage = () => {
             <li>{language === 'es' ? 'Optimizado para Conversión' : 'Conversion Optimized'}</li>
             <li>{language === 'es' ? 'Responsive (Móvil)' : 'Fully Responsive'}</li>
           </ul>
-          <button className="btn-select">
+          <button className={styles.btnSelect}>
             {language === 'es' ? 'Seleccionar' : 'Select'}
           </button>
         </div>
 
-        {/* Card 2: Website */}
-        <div className="service-card dark">
+        {/* Card 2: Website (Dark Version) */}
+        <div className={`${styles.serviceCard} ${styles.dark}`}>
           <h2>Website</h2>
           
-          <div className="price">
-            <span className="symbol">{currency.symbol}</span>
+          <div className={styles.price}>
+            <span className={styles.symbol}>{currency.symbol}</span>
             {content.web}
-            <span className="code">{currency.code}</span>
+            <span className={styles.code}>{currency.code}</span>
           </div>
 
           <ul>
@@ -78,7 +76,7 @@ const QuotePage = () => {
             <li>{language === 'es' ? 'Panel Auto-administrable' : 'CMS Dashboard'}</li>
             <li>{language === 'es' ? 'Soporte Premium' : 'Premium Support'}</li>
           </ul>
-          <button className="btn-select primary">
+          <button className={`${styles.btnSelect} ${styles.primary}`}>
             {language === 'es' ? 'Seleccionar' : 'Select'}
           </button>
         </div>

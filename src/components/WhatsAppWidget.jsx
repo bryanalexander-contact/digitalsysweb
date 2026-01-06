@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/WhatsAppWidget.module.css';
+import styles from '../css/WhatsAppWidget.module.css';
 
 const WhatsAppWidget = () => {
   const phoneNumber = "56958678410";
@@ -10,7 +10,7 @@ const WhatsAppWidget = () => {
   return (
     <a 
       href={whatsappUrl} 
-      className="whatsapp-bubble" 
+      className={styles.whatsappBubble} 
       target="_blank" 
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
@@ -19,7 +19,7 @@ const WhatsAppWidget = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
         alt="WhatsApp" 
       />
-      <span className="tooltip">¿En qué podemos ayudarte?</span>
+      <span className={styles.tooltip}>¿En qué podemos ayudarte?</span>
     </a>
   );
 };

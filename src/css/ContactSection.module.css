@@ -1,135 +1,224 @@
-:root {
-  --bg-color: #ffffff;
-  --text-main: #000000;
-  --text-secondary: #666666;
-  --accent: #000000;
-  --border-color: #e0e0e0;
-  --font-family: 'Inter', sans-serif;
+.contactContainer {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 180px 8% 80px 8%; 
 }
 
-/* --- ESTILOS BASE (PC / DESKTOP) --- */
-.contact-container {
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  font-family: var(--font-family);
-  max-width: 1400px;
-  margin: 0 auto;
-  /* 211px desde el techo, 8% lateral */
-  padding: 211px 8% 80px 8%; 
+/* FORM SECTION */
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 100px;
+    margin-bottom: 40px;
 }
 
-.hero-title {
-  font-size: 5rem;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  letter-spacing: -2px;
-  line-height: 1.1;
+.formInfo h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
+    margin-bottom: 20px;
+    letter-spacing: -0.03em;
 }
 
-.hero-subtitle {
-  font-size: 1.5rem;
-  max-width: 600px;
-  line-height: 1.4;
-  margin-bottom: 3rem;
-  color: var(--text-secondary);
+.formInfo p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1.1rem;
 }
 
-.hero-links {
-  display: flex;
-  gap: 60px;
+.directChannels {
+    margin: 40px 0;
 }
 
-.link-group span {
-  display: block;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+.directChannels h3 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 20px;
 }
 
-.contact-link {
-  font-size: 1.3rem;
-  color: var(--text-main);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: border 0.3s;
+.channelItem {
+    margin-bottom: 25px;
 }
 
-.contact-link:hover {
-  border-bottom: 2px solid var(--accent);
+.channelItem strong {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.divider {
-  border: 0;
-  border-top: 1px solid var(--border-color);
-  margin: 80px 0;
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-bottom: 40px;
-}
-
-/* Estilos de inputs y botones (iguales a tu original) */
-.form-info h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.direct-channels { margin: 30px 0; }
-.channel-item { margin-bottom: 15px; }
-.channel-item strong { font-size: 0.75rem; text-transform: uppercase; color: var(--text-secondary); }
-.input-group { margin-bottom: 25px; display: flex; flex-direction: column; }
-.input-group input, .input-group textarea { border: none; border-bottom: 1px solid var(--border-color); padding: 12px 0; font-size: 1rem; outline: none; background: transparent; }
-.button-group { display: flex; gap: 15px; margin-top: 30px; }
-button { padding: 14px 28px; border-radius: 50px; font-weight: 500; cursor: pointer; transition: 0.3s; }
-.btn-primary { background: #000; color: #fff; border: none; }
-.btn-secondary { background: transparent; border: 1px solid #000; }
-
-/* --- TABLET (Hasta 1024px) --- */
-@media (max-width: 1024px) {
-  .contact-container {
-    padding-top: 160px; /* Reducción proporcional del techo */
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-  .hero-title {
-    font-size: 4rem;
-  }
-  .form-grid {
-    gap: 40px;
-  }
-}
-
-/* --- MÓVIL (Hasta 768px) --- */
-@media (max-width: 768px) {
-  .contact-container {
-    padding-top: 100px; /* Techo más corto para evitar scroll innecesario */
-    padding-bottom: 40px;
-  }
-  
-  .hero-title {
-    font-size: 2.8rem; /* Ajuste para que no se corte la palabra */
-    letter-spacing: -1px;
-  }
-
-  .hero-subtitle {
+.channelItem p {
     font-size: 1.2rem;
-  }
+    font-weight: 500;
+    color: #000;
+}
 
-  .hero-links {
-    flex-direction: column; /* Links uno debajo del otro */
-    gap: 25px;
-  }
+/* FORM STYLES */
+.inputGroup {
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+}
 
-  .form-grid {
-    grid-template-columns: 1fr; /* Una sola columna: info arriba, form abajo */
-    gap: 50px;
-  }
+.inputGroup label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #111;
+}
 
-  .button-group {
-    flex-direction: column; /* Botones apilados */
-  }
+.inputGroup input, 
+.inputGroup textarea {
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 0;
+    font-size: 1.05rem;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.3s ease;
+}
 
-  button {
-    width: 100%;
-  }
+.inputGroup input:focus, 
+.inputGroup textarea:focus {
+    border-bottom: 1px solid #000;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.btnPrimary, .btnSecondary {
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.btnPrimary {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
+
+.btnPrimary:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+.btnSecondary {
+    background: transparent;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.btnSecondary:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+}
+
+/* DIVIDER */
+.divider {
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    margin: 100px 0;
+}
+
+/* HERO SECTION (AHORA ABAJO) */
+.heroTitle {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.heroSubtitle {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    max-width: 650px;
+    line-height: 1.4;
+    margin-bottom: 4rem;
+    color: #666;
+}
+
+.heroLinks {
+    display: flex;
+    gap: 80px;
+}
+
+.linkGroup span {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.contactLink {
+    font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+    color: #000;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid #eee;
+    transition: all 0.3s;
+}
+
+.contactLink:hover {
+    border-bottom: 2px solid #000;
+    color: #000;
+}
+
+/* --- RESPONSIVE --- */
+
+@media (max-width: 1024px) {
+    .contactContainer {
+        padding-top: 150px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .formGrid {
+        gap: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contactContainer {
+        padding-top: 120px;
+    }
+    
+    .formGrid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .formInfo {
+        order: 2; /* En móvil, la info de contacto va después del formulario */
+    }
+
+    .contactForm {
+        order: 1;
+    }
+
+    .heroLinks {
+        flex-direction: column;
+        gap: 35px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
+
+    .btnPrimary, .btnSecondary {
+        width: 100%;
+    }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import '../../css/About.module.css';
+import styles from '../../css/About.module.css';
 
 const About = () => {
   // Animación para el núcleo (movimiento muy lento)
@@ -32,20 +32,18 @@ const About = () => {
   });
 
   return (
-    <div className="clay-page-wrapper">
-      <section className="hero-clay">
+    <div className={styles.clayPageWrapper}>
+      <section className={styles.heroClay}>
         
         {/* LADO IZQUIERDO: TEXTO */}
-        <div className="hero-content-left">
-          
-          
+        <div className={styles.heroContentLeft}>
           <motion.h1 
             initial={{ opacity: 0, x: -30 }} 
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 1.2 }}
           >
             Transformamos marcas digitales hacia una experiencia<br /> 
-            <span className="accent">de primera calidad</span>
+            <span className={styles.accent}>de primera calidad</span>
           </motion.h1>
 
           <motion.p
@@ -58,26 +56,26 @@ const About = () => {
         </div>
 
         {/* LADO DERECHO: ECOSISTEMA DE CÍRCULOS */}
-        <div className="sphere-ecosystem">
-          <div className="sphere-container">
-            {/* Círculo Núcleo (más pequeño ahora) */}
-            <motion.div className="core-sphere" {...coreAnim} />
+        <div className={styles.sphereEcosystem}>
+          <div className={styles.sphereContainer}>
+            {/* Círculo Núcleo */}
+            <motion.div className={styles.coreSphere} {...coreAnim} />
             
-            {/* Satélites revoloteando cerca */}
+            {/* Satélites revoloteando */}
             <motion.div 
-              className="satellite sat-1" 
+              className={`${styles.satellite} ${styles.sat1}`} 
               {...satelliteAnim(40, -50, 12, 0)} 
             />
             <motion.div 
-              className="satellite sat-2" 
+              className={`${styles.satellite} ${styles.sat2}`} 
               {...satelliteAnim(-50, 30, 15, 2)} 
             />
           </div>
         </div>
       </section>
 
-      <section className="content-dark">
-        <div className="container">
+      <section className={styles.contentDark}>
+        <div className={styles.container}>
           <h2>Resultados Competitivos</h2>
           <p>Elevamos tu presencia digital al siguiente nivel.</p>
         </div>
