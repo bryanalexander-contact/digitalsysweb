@@ -6,7 +6,8 @@ import Hero from "./components/Hero";
 import "../../css/Home.module.css";
 
 import Information from "./components/Information";
-import Services from "./components/Services";
+import Services from "./components/ServicesSection";
+import AboutSection from "./components/AboutSection";
 // Lucide React (Solo si los usas aquí, si no, bórralos de este archivo)
 import { Zap, Monitor, BarChart3, Layers } from "lucide-react";
 
@@ -16,6 +17,7 @@ const Home = () => {
       <Hero />
       <Information />
       <Services />
+      <AboutSection />
       
     </div>
   );

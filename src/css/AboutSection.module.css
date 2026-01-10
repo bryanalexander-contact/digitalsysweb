@@ -1,0 +1,267 @@
+/* --- 1. BASE (MÓVIL) --- */
+.aboutSection {
+  background-color: #f9f9f9; /* Fondo Gris Humo */
+  padding: 100px 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+}
+
+.content {
+  max-width: 100%;
+  text-align: center; /* Centrado en móvil */
+  margin-bottom: 60px; /* Espacio antes del carrusel */
+}
+
+.kicker {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- CARRUSEL GENERAL --- */
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 80px;
+  overflow: hidden; /* Importante para el scroll horizontal */
+  cursor: grab; /* Cursor para indicar que se puede arrastrar */
+}
+
+/* CARRUSEL MOBILE/TABLET: Scroll horizontal */
+.carouselMobile {
+  display: flex;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+  scroll-snap-type: x mandatory; /* Bloquea en cada item */
+  padding-bottom: 10px; /* Espacio para la barra de scroll */
+  gap: 20px; /* Espacio entre las imágenes */
+}
+
+.carouselMobile::-webkit-scrollbar {
+  height: 5px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+}
+
+.carouselMobile::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 5px;
+}
+
+.carouselItemMobile {
+  flex: 0 0 auto; /* No se encoge, no crece, tamaño automático */
+  width: 85vw; /* Ocupa el 85% del viewport en móvil */
+  max-width: 300px; /* Máximo 300px para que no sea gigante */
+  scroll-snap-align: center; /* Se centra al hacer scroll */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background-color: #fff;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 200px; /* Altura fija para la imagen */
+  object-fit: cover;
+}
+
+.carouselText {
+  padding: 15px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #000;
+  text-align: center;
+}
+
+/* Ocultar carrusel de Desktop en móvil */
+.carouselDesktop {
+  display: none;
+}
+
+/* --- TEXTO CTA FINAL --- */
+.ctaText {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.ctaText p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.ctaLink {
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 1.1rem;
+  position: relative;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ctaLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  transition: transform 0.4s ease;
+  transform-origin: right;
+}
+
+.ctaLink:hover .ctaLine {
+  transform: scaleX(0.5); /* Se encoge al pasar el mouse */
+  transform-origin: left;
+}
+
+
+/* --- 2. TABLET (768px) --- */
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  .description {
+    font-size: 1.25rem;
+  }
+  .carouselItemMobile {
+    width: 40vw; /* Dos por fila en tablet */
+    max-width: 350px;
+  }
+  .carouselImage {
+    height: 250px;
+  }
+}
+
+/* --- 3. PC (1024px) --- */
+@media (min-width: 1024px) {
+  .aboutSection {
+    padding: 150px 8%;
+  }
+  .content {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .title {
+    font-size: 4rem;
+    max-width: 700px;
+  }
+  .description {
+    max-width: 600px;
+  }
+
+  /* Ocultar carrusel de Mobile/Tablet en PC */
+  .carouselMobile {
+    display: none;
+  }
+  /* Mostrar carrusel de Desktop en PC */
+  .carouselDesktop {
+    display: block;
+    position: relative;
+    width: 700px; /* Ancho fijo para el carrusel en PC */
+    height: 400px; /* Altura fija */
+    margin: 80px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    background-color: #fff;
+  }
+
+  .carouselItemDesktop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+  }
+  .carouselItemDesktop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 1;
+  }
+  .carouselItemDesktop p {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.6); /* Fondo semi-transparente para el texto */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  /* Flechas de navegación para PC */
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+  }
+  .navButton:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .navButton.left {
+    left: 20px;
+  }
+  .navButton.right {
+    right: 20px;
+  }
+
+  /* Cursor de flecha en PC */
+  .carouselWrapper {
+    cursor: default; /* Reset al default */
+  }
+  .carouselWrapper:hover {
+    cursor: var(--cursor-arrow, default); /* Usamos una variable CSS para el cursor */
+  }
+}

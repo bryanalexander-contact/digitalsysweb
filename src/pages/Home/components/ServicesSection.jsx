@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../../../css/services.module.css";
+import styles from "../../../css/ServicesSection.module.css";
 import { motion } from "framer-motion";
 
-export default function Services() {
+export default function ServicesSection() {
   return (
     <section className={styles.servicesSection}>
       <div className={styles.container}>
