@@ -10,6 +10,7 @@ import reliabilityImg from "../../../assets/images/carrousel/reliability.jpg";
 import scalabilityImg from "../../../assets/images/carrousel/scalability.jpg";
 import speedImg from "../../../assets/images/carrousel/speed.jpg";
 
+// Duplicamos los items para el efecto infinito real
 const carouselItems = [
   { image: conversionImg, text: "Conversión" },
   { image: experienceImg, text: "Experiencia" },
@@ -19,14 +20,16 @@ const carouselItems = [
   { image: speedImg, text: "Velocidad" },
 ];
 
+const infiniteItems = [...carouselItems, ...carouselItems, ...carouselItems];
+
 export default function AboutSection() {
   const [hoverSide, setHoverSide] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   
-  // Lógica de movimiento suave (Inercia)
   const x = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 50, damping: 20 });
+  // Reducimos stiffness para mayor suavidad al cambiar de rumbo
+  const springX = useSpring(x, { stiffness: 40, damping: 25, mass: 0.8 });
   const trackRef = useRef(null);
 
   useEffect(() => {
@@ -34,19 +37,32 @@ export default function AboutSection() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     
-    // Bucle de movimiento para PC
     let animationFrame;
     const move = () => {
       if (!isMobile && hoverSide) {
-        const speed = 8;
+        const speed = 4; // VELOCIDAD REDUCIDA PARA MAYOR ELEGANCIA
         const delta = hoverSide === "right" ? -speed : speed;
         
-        // Limitar el scroll para que no quede en blanco
-        const currentX = x.get();
-        const maxScroll = trackRef.current ? -(trackRef.current.scrollWidth - window.innerWidth + 100) : -2000;
-        
-        if (delta < 0 && currentX > maxScroll) x.set(currentX + delta);
-        if (delta > 0 && currentX < 0) x.set(currentX + delta);
+        let currentX = x.get();
+        let newX = currentX + delta;
+
+        // LÓGICA DE LOOP INFINITO REAL
+        if (trackRef.current) {
+          const trackWidth = trackRef.current.scrollWidth;
+          const oneThird = trackWidth / 3;
+
+          // Si el scroll avanza mucho a la izquierda, resetea al centro sin que se note
+          if (newX < -oneThird * 2) {
+            newX = -oneThird;
+            x.jump(newX); // 'jump' evita que el spring intente animar el salto
+          } 
+          // Si retrocede mucho a la derecha, resetea al centro
+          else if (newX > 0) {
+            newX = -oneThird;
+            x.jump(newX);
+          }
+        }
+        x.set(newX);
       }
       animationFrame = requestAnimationFrame(move);
     };
@@ -75,7 +91,7 @@ export default function AboutSection() {
       onMouseMove={handleMouseMove} 
       onMouseLeave={() => setHoverSide(null)}
     >
-      {/* FLECHA PERSONALIZADA (Solo PC) */}
+      {/* FLECHA PERSONALIZADA */}
       {!isMobile && (
         <div 
           className={`${styles.customCursor} ${hoverSide ? styles.visible : ''}`}
@@ -97,10 +113,9 @@ export default function AboutSection() {
 
       <div className={styles.container}>
         <div className={styles.carouselWrapper}>
-          {/* En PC usamos motion.div para el scroll suave, en móvil scroll nativo */}
           {isMobile ? (
             <div className={styles.trackMobile}>
-              {carouselItems.map((item, index) => (
+              {infiniteItems.map((item, index) => (
                 <div key={index} className={styles.carouselItem}>
                   <div className={styles.imageWrapper}>
                     <img src={item.image} alt={item.text} className={styles.carouselImage} />
@@ -117,7 +132,7 @@ export default function AboutSection() {
               className={styles.trackDesktop}
               style={{ x: springX }}
             >
-              {carouselItems.map((item, index) => (
+              {infiniteItems.map((item, index) => (
                 <div key={index} className={styles.carouselItem}>
                   <div className={styles.imageWrapper}>
                     <img src={item.image} alt={item.text} className={styles.carouselImage} />
