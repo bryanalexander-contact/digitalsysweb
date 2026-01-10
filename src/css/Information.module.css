@@ -1,0 +1,98 @@
+/* --- 1. BASE (MÓVIL) --- */
+.infoSection {
+  padding: 80px 6%;
+  background-color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Una columna en celular */
+  gap: 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.kicker {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #777;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.subTitle {
+  font-weight: 600;
+  color: #333;
+  margin-top: 30px;
+}
+
+/* ACORDEÓN */
+.accordionSide {
+  width: 100%;
+}
+
+.accordionItem {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  color: #000;
+}
+
+.accordionContent {
+  overflow: hidden;
+  padding-bottom: 24px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* --- 2. TABLET (768px) --- */
+@media (min-width: 768px) {
+  .title {
+    font-size: 2.2rem;
+  }
+}
+
+/* --- 3. PC (1024px) --- */
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row; /* Diseño en fila para PC */
+    align-items: flex-start;
+    gap: 100px;
+    padding: 100px 0;
+  }
+
+  .textSide {
+    flex: 1; /* Ocupa la mitad */
+    position: sticky; /* Se queda fijo mientras haces scroll en el acordeón */
+    top: 100px;
+  }
+
+  .accordionSide {
+    flex: 1; /* Ocupa la otra mitad */
+  }
+
+  .title {
+    font-size: 2.8rem;
+  }
+}

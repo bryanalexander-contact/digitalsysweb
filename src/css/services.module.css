@@ -1,157 +1,91 @@
-.servicesPageWrapper {
-    background-color: #ffffff;
-    color: #000000;
-    overflow-x: hidden;
-    font-family: 'Inter', sans-serif;
+/* --- 1. BASE (MÓVIL) --- */
+.servicesSection {
+  /* Fondo Gris Humo: Diferente al blanco pero combina perfecto */
+  background-color: #f9f9f9; 
+  padding: 100px 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.contentLimit {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 5%;
+.container {
+  max-width: 1440px;
+  width: 100%;
 }
 
-/* HERO SECTION */
-.heroServices {
-    padding: 180px 0 100px;
+.content {
+  max-width: 100%;
+  text-align: left; /* Alineado a la izquierda para un look más "Agencia" */
 }
 
-.heroServices h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 40px;
-    max-width: 1100px;
+.kicker {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #888;
+  margin-bottom: 20px;
 }
 
-.heroServices p {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    line-height: 1.5;
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #000;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 40px;
+  max-width: 500px; /* Para que no se estire mucho en tablets */
+}
+
+/* EL LINK CON LA LÍNEA NEGRA */
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  transition: transform 0.4s ease;
+  transform-origin: right;
+}
+
+.link:hover .line {
+  transform: scaleX(0.5); /* Se encoge un poco al pasar el mouse */
+  transform-origin: left;
+}
+
+/* --- 2. TABLET / PC --- */
+@media (min-width: 768px) {
+  .servicesSection {
+    padding: 150px 8%;
+  }
+
+  .title {
+    font-size: 4rem; /* Título gigante en pantallas grandes */
     max-width: 700px;
-    color: #666;
-}
+  }
 
-/* LISTA DE SERVICIOS */
-.servicesList {
-    padding-bottom: 150px;
-}
-
-.serviceRowNew {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 80px;
-    margin-bottom: 180px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: transform 1s cubic-bezier(0.215, 0.61, 0.355, 1), 
-                opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-/* Clase activada por IntersectionObserver */
-.active {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-/* Inversión de filas impares para ritmo visual */
-.serviceRowNew:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-/* CAJA DE IMAGEN */
-.serviceVisualBox {
-    flex: 1;
-    overflow: hidden;
-    border-radius: 4px; /* Opcional: un borde casi imperceptible */
-}
-
-.imgContainer {
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-    background: #f7f7f7;
-}
-
-.imgContainer img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.serviceRowNew:hover .imgContainer img {
-    transform: scale(1.05);
-}
-
-/* CAJA DE TEXTO */
-.serviceTextBox {
-    flex: 0.8;
-}
-
-.serviceTitleBig {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 500;
-    margin-bottom: 25px;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-}
-
-.serviceDescBig {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: #333;
-    max-width: 480px;
-}
-
-/* ANIMACIONES HERO */
-.revealText {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: revealUp 1.2s forwards cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.delay1 {
-    animation-delay: 0.2s;
-}
-
-@keyframes revealUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-    .serviceRowNew, 
-    .serviceRowNew:nth-child(even) {
-        flex-direction: column !important;
-        gap: 40px;
-        margin-bottom: 120px;
-    }
-
-    .imgContainer {
-        height: 400px;
-    }
-
-    .serviceTextBox {
-        width: 100%;
-        text-align: left;
-    }
-
-    .serviceDescBig {
-        max-width: 100%;
-    }
-
-    .heroServices {
-        padding-top: 140px;
-    }
-}
-
-@media (max-width: 480px) {
-    .imgContainer {
-        height: 280px;
-    }
+  .description {
+    font-size: 1.25rem;
+    max-width: 600px;
+  }
 }
