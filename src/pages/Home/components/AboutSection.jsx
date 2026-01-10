@@ -72,23 +72,8 @@ export default function AboutSection() {
   return (
     <section className={styles.aboutSection}>
       <div className={styles.container}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className={styles.content}
-        >
-          <span className={styles.kicker}>Nuestra Esencia</span>
-          <h2 className={styles.title}>Creamos con propósito.</h2>
-          <p className={styles.description}>
-            En Digitalsysweb, no solo construimos sitios web; forjamos experiencias digitales
-            que definen marcas y transforman ideas en éxitos tangibles. Descubre
-            los pilares que nos impulsan y la visión que compartimos contigo.
-          </p>
-        </motion.div>
-
-        {/* CARRUSEL */}
+        
+        {/* 1. EL CARRUSEL (Ahora arriba) */}
         <div 
           ref={carouselRef} 
           className={styles.carouselWrapper}
@@ -152,7 +137,24 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* TEXTO DE LLAMADA A LA ACCIÓN */}
+        {/* 2. TEXTO PRINCIPAL (Ahora en medio) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className={styles.content}
+        >
+          <span className={styles.kicker}>Nuestra Esencia</span>
+          <h2 className={styles.title}>Creamos con propósito.</h2>
+          <p className={styles.description}>
+            En Digitalsysweb, no solo construimos sitios web; forjamos experiencias digitales
+            que definen marcas y transforman ideas en éxitos tangibles. Descubre
+            los pilares que nos impulsan y la visión que compartimos contigo.
+          </p>
+        </motion.div>
+
+        {/* 3. TEXTO DE LLAMADA A LA ACCIÓN (Abajo) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -168,6 +170,7 @@ export default function AboutSection() {
             <span className={styles.ctaLine}></span>
           </a>
         </motion.div>
+
       </div>
     </section>
   );
