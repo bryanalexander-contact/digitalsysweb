@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import styles from "../../../css/Hero.module.css";
 
 export default function Hero() {
-  // Animación para el Morfismo Orgánico
   const blobVariants = {    
     animate: {
       borderRadius: [
@@ -14,17 +13,14 @@ export default function Hero() {
         "30% 70% 70% 30% / 30% 30% 70% 70%",
       ],
       rotate: [0, 90, 180, 0],
-      transition: {
-        duration: 20,
-        repeat: Infinity,
-        ease: "linear",
-      },
+      transition: { duration: 20, repeat: Infinity, ease: "linear" },
     },
   };
 
   return (
     <section className={styles.heroClay}>
       <div className={styles.heroContentWrapper}>
+        
         {/* LADO IZQUIERDO: TEXTO */}
         <div className={styles.heroLeft}>
           <motion.span
@@ -59,8 +55,18 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* LADO DERECHO: BURBUJA */}
+        {/* LADO DERECHO: VIDEO Y BURBUJA */}
         <div className={styles.heroRight}>
+          {/* Este video solo se verá en móviles/tablets debajo del texto */}
+          <video
+            autoPlay loop muted playsInline
+            className={styles.heroVideoMobile}
+          >
+            <source src="/hero_videoWeb.webm" type="video/webm" />
+            <source src="/hero_videoMp4.mp4" type="video/mp4" />
+          </video>
+
+          {/* Esta burbuja solo se verá en PC */}
           <div className={styles.blobContainer}>
             <motion.div
               className={`${styles.blobMain} ${styles.glassMorph}`}
@@ -78,6 +84,7 @@ export default function Hero() {
             />
           </div>
         </div>
+
       </div>
     </section>
   );
