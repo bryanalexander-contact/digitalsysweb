@@ -1,0 +1,138 @@
+/* --- 1. BASE (MÓVIL) --- */
+.faqSection {
+  background-color: #0f0f0f; /* Negro Claro / Antracita */
+  padding: 80px 6%;
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.kicker {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: #b87333; /* Tu color cobre innovador */
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+
+/* --- ACCORDIÓN --- */
+.accordion {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faqItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.faqItem:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.questionButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.questionText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #eee;
+  padding-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.faqItem.active .questionText {
+  color: #b87333; /* El color cobre resalta la pregunta activa */
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: #888;
+}
+
+.answerWrapper {
+  overflow: hidden;
+}
+
+.answerText {
+  padding-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #aaa;
+  max-width: 800px;
+}
+
+/* --- 2. TABLET (768px) --- */
+@media (min-width: 768px) {
+  .faqSection {
+    padding: 100px 8%;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .questionText {
+    font-size: 1.3rem;
+  }
+
+  .answerText {
+    font-size: 1.1rem;
+  }
+}
+
+/* --- 3. PC (1024px) --- */
+@media (min-width: 1024px) {
+  .faqSection {
+    padding: 150px 0;
+  }
+
+  .header {
+    text-align: left;
+    margin-bottom: 80px;
+  }
+
+  .accordion {
+    max-width: 900px;
+  }
+
+  .questionText {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .faqItem {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

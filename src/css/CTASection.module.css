@@ -1,0 +1,81 @@
+.ctaSection {
+  background-color: #0f0f0f; /* Mismo negro claro que el FAQ */
+  padding: 100px 6%;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-bottom: 45px;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* BOTÓN COBRE (WHATSAPP) */
+.primaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #b87333; /* Tu cobre innovador */
+  color: #fff;
+  padding: 18px 35px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(184, 115, 51, 0.2);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(184, 115, 51, 0.4);
+  background-color: #d18a4a;
+}
+
+/* BOTÓN NEGRO/BORDE (CORREO) */
+.secondaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  color: #fff;
+  padding: 18px 35px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #fff;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .buttonGroup {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
