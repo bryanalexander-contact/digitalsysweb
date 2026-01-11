@@ -1,169 +1,210 @@
-.quoteContainer {
-    min-height: 100vh;
-    background-color: #ffffff;
-    padding: 160px 5% 100px; /* Padding superior para el header fijo */
-    font-family: 'Inter', sans-serif;
-    max-width: 1300px;
-    margin: 0 auto;
+/* Paleta Clay: Neutros, Grises cálidos y un color de acento suave */
+:root {
+  --clay-bg: #f5f5f7;
+  --clay-card: #ffffff;
+  --clay-text: #1d1d1f;
+  --clay-sub: #86868b;
+  --accent: #0071e3; /* Azul Apple/Clay */
+  --radius: 18px;
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.quoteHeader {
-    text-align: center;
-    margin-bottom: 80px;
+/* Tonalidades por servicio */
+.landing { --accent: #0071e3; }
+.website { --accent: #633bbc; }
+.redesign { --accent: #1d1d1f; }
+
+.mainWrapper {
+  min-height: 100vh;
+  background-color: var(--clay-bg);
+  color: var(--clay-text);
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background 0.5s var(--easing);
 }
 
-.badge {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 11px;
-    font-weight: 700;
-    color: #999;
+.contentHeader {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.quoteHeader h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    margin: 20px 0;
-    color: #111;
+.miniBadge {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
 }
 
-.quoteHeader p {
-    color: #666;
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
+.contentHeader h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-.cardsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
-    padding-bottom: 50px;
+/* Selector Minimalista */
+.selectorWrapper {
+  max-width: 400px;
+  margin: 0 auto 40px;
+  text-align: center;
 }
 
-.serviceCard {
-    border: 1px solid #f0f0f0;
-    padding: 60px 50px;
-    border-radius: 32px;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    background: #ffffff;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+.selectorLabel {
+  font-size: 14px;
+  color: var(--clay-sub);
+  margin-bottom: 12px;
 }
 
-.serviceCard:hover {
-    border-color: #000;
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+.segmentedControl {
+  background: #e8e8ed;
+  padding: 4px;
+  border-radius: 12px;
+  display: flex;
+  gap: 4px;
 }
 
-/* Versión Oscura (Website) */
-.dark {
-    background-color: #000;
-    color: #fff;
-    border-color: #000;
+.segmentedControl button {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  color: var(--clay-sub);
+  transition: all 0.2s var(--easing);
 }
 
-.dark h2 { color: #fff; }
-.dark .price { color: #fff; }
-.dark ul { color: #ccc; }
-
-.serviceCard h2 {
-    font-size: 1.6rem;
-    margin-bottom: 35px;
-    font-weight: 600;
+.segmentedControl button.activeOption {
+  background: var(--clay-card);
+  color: var(--clay-text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-.price {
-    font-size: 4.5rem;
-    font-weight: 600;
-    letter-spacing: -0.05em;
-    margin-bottom: 35px;
-    display: flex;
-    align-items: flex-start;
+/* Layout Principal */
+.mainGrid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile first */
+  gap: 40px;
 }
 
-.symbol {
-    font-size: 1.8rem;
-    margin-top: 10px;
-    margin-right: 5px;
-    font-weight: 500;
+.priceDisplay {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.code {
-    font-size: 0.9rem;
-    color: #888;
-    letter-spacing: 0.1em;
-    margin-left: 10px;
-    align-self: flex-end;
-    margin-bottom: 15px;
+.priceTag {
+  color: var(--accent);
+  transition: color 0.4s var(--easing);
 }
 
-.serviceCard ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 50px;
-    color: #555;
-    flex-grow: 1; /* Empuja el botón siempre al fondo */
+.amount {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -2px;
 }
 
-.serviceCard li {
-    margin-bottom: 18px;
-    font-size: 1.05rem;
-    display: flex;
-    align-items: center;
+.currency { font-size: 24px; vertical-align: super; font-weight: 600; }
+.code { font-size: 18px; margin-left: 10px; color: var(--clay-sub); }
+
+/* Formulario Estilo Clay */
+.formCard {
+  background: var(--clay-card);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
 }
 
-/* Punto estético antes de cada li */
-.serviceCard li::before {
-    content: "—";
-    margin-right: 12px;
-    color: #ccc;
+.inputGroup {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile */
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
-.btnSelect {
-    width: 100%;
-    padding: 20px;
-    border-radius: 100px;
-    border: 1px solid #000;
-    background: transparent;
-    color: #000;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.contactForm input, .formCard textarea, .formCard input {
+  width: 100%;
+  padding: 16px;
+  background: #f5f5f7;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
 }
 
-.primary {
-    background: #fff !important;
-    color: #000 !important;
-    border-color: #fff !important;
+.formCard input:focus, .formCard textarea:focus {
+  background: #fff;
+  border-color: var(--accent);
 }
 
-.btnSelect:hover {
-    background: #000;
-    color: #fff;
+.btnSubmit {
+  width: 100%;
+  padding: 18px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.primary:hover {
-    background: transparent !important;
-    color: #fff !important;
+.btnSubmit:hover { transform: scale(1.01); opacity: 0.9; }
+
+.footerContact {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  border-top: 1px solid #f2f2f2;
+  padding-top: 20px;
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 1024px) {
-    .quoteHeader h1 { font-size: 3rem; }
-    .quoteContainer { padding-top: 140px; }
+.footerContact a {
+  color: var(--clay-sub);
+  text-decoration: none;
+  font-size: 14px;
 }
 
-@media (max-width: 768px) {
-    .serviceCard {
-        padding: 40px 30px;
-    }
-    .price { font-size: 3.5rem; }
-    .cardsGrid {
-        grid-template-columns: 1fr;
-    }
+/* Éxito */
+.successContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clay-bg);
+}
+
+.successCard {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+.checkIcon {
+  font-family: cursive;
+  font-size: 50px;
+  color: #34c759;
+  margin-bottom: 20px;
+}
+
+/* Desktop Version */
+@media (min-width: 768px) {
+  .mainGrid {
+    grid-template-columns: 1fr 1.2fr;
+    padding: 40px;
+  }
+  .contentHeader h1 { font-size: 48px; }
+  .inputGroup { grid-template-columns: 1fr 1fr; }
+  .priceDisplay { text-align: left; }
 }

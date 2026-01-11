@@ -10,6 +10,7 @@ import Services from "./pages/Services/Services";
 import QuotePage from "./pages/QuotePage/QuotePage";
 import ContactSection from "./pages/ContactSection/ContactSection";
 import Page404 from "./pages/Page404/Page404";
+
 // Componentes temporales si no los tienes creados aún:
 const Contact = () => <div style={{paddingTop: '100px'}}>Página de Contacto</div>;
 const Quote = () => <div style={{paddingTop: '100px'}}>Página de Cotización</div>;
@@ -27,6 +28,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<ContactSection />} />
           <Route path="/quote" element={<QuotePage />} />
+          
           <Route path="*" element={<Page404 />} />
           
         </Routes>
