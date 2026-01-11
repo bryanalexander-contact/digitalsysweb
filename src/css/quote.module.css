@@ -1,210 +1,145 @@
-/* Paleta Clay: Neutros, Grises cálidos y un color de acento suave */
 :root {
   --clay-bg: #f5f5f7;
   --clay-card: #ffffff;
   --clay-text: #1d1d1f;
   --clay-sub: #86868b;
-  --accent: #0071e3; /* Azul Apple/Clay */
-  --radius: 18px;
-  --easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 22px;
+  --accent: #0071e3;
+  --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Tonalidades por servicio */
-.landing { --accent: #0071e3; }
-.website { --accent: #633bbc; }
-.redesign { --accent: #1d1d1f; }
+/* Tonalidades Clay profesionales */
+.landing { --accent: #0071e3; --soft-bg: #eef7ff; }
+.website { --accent: #6e44ff; --soft-bg: #f4f0ff; }
+.redesign { --accent: #2c3e50; --soft-bg: #f8f9fa; }
 
 .mainWrapper {
   min-height: 100vh;
   background-color: var(--clay-bg);
-  color: var(--clay-text);
-  padding: 40px 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  transition: background 0.5s var(--easing);
+  padding: 100px 15px 40px 15px;
+  font-family: -apple-system, sans-serif;
+  transition: var(--transition);
 }
 
-.contentHeader {
-  text-align: center;
-  margin-bottom: 30px;
-}
+.contentHeader { text-align: center; margin-bottom: 30px; }
+.miniBadge { color: var(--accent); font-weight: 700; font-size: 13px; text-transform: uppercase; }
+.contentHeader h1 { font-size: 34px; letter-spacing: -1px; margin-top: 10px; }
 
-.miniBadge {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-
-.contentHeader h1 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-}
-
-/* Selector Minimalista */
-.selectorWrapper {
-  max-width: 400px;
-  margin: 0 auto 40px;
-  text-align: center;
-}
-
-.selectorLabel {
-  font-size: 14px;
-  color: var(--clay-sub);
-  margin-bottom: 12px;
-}
-
+/* Selector */
+.selectorWrapper { max-width: 400px; margin: 0 auto 40px; }
 .segmentedControl {
-  background: #e8e8ed;
+  background: #e5e5ea;
   padding: 4px;
-  border-radius: 12px;
+  border-radius: 14px;
   display: flex;
-  gap: 4px;
 }
-
 .segmentedControl button {
-  flex: 1;
-  border: none;
-  padding: 10px;
-  border-radius: 9px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  background: transparent;
-  color: var(--clay-sub);
-  transition: all 0.2s var(--easing);
+  flex: 1; border: none; padding: 12px; border-radius: 10px;
+  font-weight: 600; cursor: pointer; background: transparent; color: var(--clay-sub);
+  transition: var(--transition);
 }
+.activeOption { background: white !important; color: var(--clay-text) !important; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
-.segmentedControl button.activeOption {
-  background: var(--clay-card);
-  color: var(--clay-text);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-/* Layout Principal */
+/* Layout */
 .mainGrid {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr; /* Mobile first */
-  gap: 40px;
+  grid-template-columns: 1fr; /* Mobile First */
+  gap: 30px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .priceDisplay {
+  background: var(--soft-bg);
+  padding: 40px;
+  border-radius: var(--radius);
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  transition: var(--transition);
 }
+.amount { font-size: 58px; font-weight: 800; color: var(--accent); }
+.currency { font-size: 24px; vertical-align: super; color: var(--accent); }
+.code { font-size: 18px; color: var(--clay-sub); margin-left: 8px; }
 
-.priceTag {
-  color: var(--accent);
-  transition: color 0.4s var(--easing);
-}
-
-.amount {
-  font-size: 64px;
-  font-weight: 800;
-  letter-spacing: -2px;
-}
-
-.currency { font-size: 24px; vertical-align: super; font-weight: 600; }
-.code { font-size: 18px; margin-left: 10px; color: var(--clay-sub); }
-
-/* Formulario Estilo Clay */
-.formCard {
-  background: var(--clay-card);
+/* Especificaciones */
+.specsBox {
+  background: white;
   padding: 30px;
   border-radius: var(--radius);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
 }
+.specsBox h3 { font-size: 18px; margin-bottom: 15px; }
+.specsBox ul { list-style: none; padding: 0; }
+.specsBox li {
+  padding: 12px 0;
+  border-bottom: 1px solid #f2f2f7;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.bullet { color: var(--accent); font-weight: bold; margin-right: 10px; font-size: 20px; }
 
-.inputGroup {
-  display: grid;
-  grid-template-columns: 1fr; /* Mobile */
-  gap: 15px;
-  margin-bottom: 15px;
+/* Formulario */
+.formCard {
+  background: white;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
 }
-
-.contactForm input, .formCard textarea, .formCard input {
-  width: 100%;
-  padding: 16px;
-  background: #f5f5f7;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s;
+.inputGroup { display: grid; gap: 15px; margin-bottom: 15px; }
+.formCard input, .formCard textarea {
+  padding: 16px; background: #f5f5f7; border: 1px solid transparent;
+  border-radius: 12px; font-size: 16px; outline: none; transition: 0.3s;
 }
-
-.formCard input:focus, .formCard textarea:focus {
-  background: #fff;
-  border-color: var(--accent);
-}
+.formCard input:focus { background: white; border-color: var(--accent); }
 
 .btnSubmit {
-  width: 100%;
-  padding: 18px;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: transform 0.2s;
+  width: 100%; padding: 20px; background: var(--accent); color: white;
+  border: none; border-radius: 16px; font-weight: 700; font-size: 17px;
+  cursor: pointer; transition: transform 0.2s;
 }
-
-.btnSubmit:hover { transform: scale(1.01); opacity: 0.9; }
+.btnSubmit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
 .footerContact {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  border-top: 1px solid #f2f2f2;
-  padding-top: 20px;
+  margin-top: 30px; padding-top: 20px; border-top: 1px solid #f2f2f7;
+  display: flex; flex-direction: column; gap: 10px; align-items: center;
 }
+.footerContact a { text-decoration: none; color: var(--clay-sub); font-size: 14px; transition: 0.3s; }
+.footerContact a:hover { color: var(--accent); }
 
-.footerContact a {
-  color: var(--clay-sub);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-/* Éxito */
+/* Success Modal */
 .successContainer {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--clay-bg);
+  height: 100vh; display: flex; align-items: center; justify-content: center; background: #f5f5f7;
 }
-
 .successCard {
-  background: white;
-  padding: 40px;
-  border-radius: 30px;
-  text-align: center;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  background: white; padding: 50px; border-radius: 30px; text-align: center; max-width: 400px;
 }
+.checkIcon { font-size: 60px; color: #34c759; margin-bottom: 20px; }
 
-.checkIcon {
-  font-family: cursive;
-  font-size: 50px;
-  color: #34c759;
-  margin-bottom: 20px;
-}
-
-/* Desktop Version */
+/* Responsive Desktop */
 @media (min-width: 768px) {
-  .mainGrid {
-    grid-template-columns: 1fr 1.2fr;
-    padding: 40px;
-  }
-  .contentHeader h1 { font-size: 48px; }
+  .mainGrid { grid-template-columns: 1fr 1.2fr; }
   .inputGroup { grid-template-columns: 1fr 1fr; }
   .priceDisplay { text-align: left; }
+  .contentHeader h1 { font-size: 46px; }
+}
+
+
+@media (min-width: 768px) {
+  .mainWrapper {
+    /* En PC solemos dar más aire (80px o 100px) para que se vea más premium */
+    padding: 100px 20px 60px 20px; 
+  }
+
+  .mainGrid { 
+    grid-template-columns: 1fr 1.2fr; 
+  }
+  .inputGroup { grid-template-columns: 1fr 1fr; }
+  .priceDisplay { text-align: left; }
+  .contentHeader h1 { font-size: 46px; }
 }
