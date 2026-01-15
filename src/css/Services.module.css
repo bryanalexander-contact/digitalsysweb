@@ -1,167 +1,165 @@
-/* --- CONTENEDORES BASE --- */
-.servicesPageWrapper {
+/* Services.module.css */
+.mainContainer {
+  width: 100%;
   background-color: #ffffff;
-  color: #000000;
-  width: 100%;
+  color: #1a1a1a;
+  scroll-behavior: smooth;
 }
 
-.contentLimit {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 6%;
-}
-
-/* --- HERO SECTION (La parte de arriba) --- */
-.heroServices {
-  padding: 140px 0 80px 0;
-  background-color: #ffffff;
-}
-
-.heroServices h1 {
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
-  max-width: 900px;
-  margin-bottom: 30px;
-}
-
-.heroServices p {
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  color: #555;
-  max-width: 650px;
-  line-height: 1.6;
-}
-
-/* --- LISTADO DE SERVICIOS --- */
-.servicesList {
-  background-color: #f9f9f9; /* El fondo gris humo que te gusta */
-  padding: 100px 0;
-}
-
-.serviceRowNew {
-  display: flex;
-  flex-direction: column; /* Columna en móvil */
-  gap: 40px;
-  margin-bottom: 120px;
-  opacity: 0; /* Oculto inicialmente para el Intersection Observer */
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-/* Cuando el Intersection Observer activa la fila */
-.serviceRowNew.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.serviceRowNew:last-child {
-  margin-bottom: 0;
-}
-
-/* --- IMAGEN --- */
-.serviceVisualBox {
-  flex: 1;
-  width: 100%;
-}
-
-.imgContainer {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background-color: #eee;
-  /* Mantenemos bordes rectos como pediste anteriormente */
-}
-
-.imgContainer img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.serviceRowNew:hover .imgContainer img {
-  transform: scale(1.05);
-}
-
-/* --- TEXTO --- */
-.serviceTextBox {
-  flex: 1;
+.section {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 80px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.serviceTitleBig {
-  font-size: 1.8rem;
+/* HERO SECTION ESPECÍFICO */
+.hero {
+  text-align: center;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+  padding-bottom: 120px; /* Espacio para el indicador */
+}
+
+.scrollIndicator {
+  position: absolute;
+  /* Subimos la posición como pediste (ajusta este valor si lo quieres aún más arriba) */
+  bottom: 120px; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.5;
+  cursor: pointer; /* Cambiado a pointer para indicar que se puede hacer clic */
+  transition: opacity 0.3s ease;
+}
+
+.scrollIndicator:hover {
+  opacity: 1;
+}
+
+.scrollText {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
   font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
+  margin-bottom: 5px;
+}
+.mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid #1a1a1a;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
 }
 
-.serviceDescBig {
+.wheel {
+  width: 3px;
+  height: 6px;
+  background-color: #1a1a1a;
+  border-radius: 2px;
+}
+
+/* TIPOGRAFÍA Y GRID */
+.title {
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  margin-bottom: 40px;
+}
+
+.titleLanding { color: #3b31d8; }
+.titleWeb { color: #1a6332; }
+.titleRedesign { color: #c25e14; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.descriptionBox h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 24px;
+  opacity: 0.4;
+  font-weight: 800;
+}
+
+.mainText {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  font-weight: 500;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.detailsList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.detailItem {
   font-size: 1.1rem;
-  line-height: 1.7;
-  color: #444;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  opacity: 0.8;
+  line-height: 1.4;
 }
 
-/* --- ANIMACIONES DE TEXTO EN HERO --- */
-.revealText {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: revealFade 0.8s forwards;
+.detailItem::before {
+  content: "—";
+  color: currentColor;
+  font-weight: 900;
 }
 
-.delay1 { animation-delay: 0.2s; }
+.ctaButton {
+  margin-top: 50px;
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 22px 48px;
+  border-radius: 100px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: fit-content;
+}
 
-@keyframes revealFade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.ctaButton:hover {
+  background: #1a1a1a;
+  color: #fff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+/* TABLET & PC */
+@media (min-width: 768px) {
+  .section { padding: 0 80px; }
+  .grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: start;
   }
+  .mainText { font-size: 2.4rem; }
+  .detailsList { grid-template-columns: 1fr; }
 }
 
-/* --- 2. TABLET Y PC (Desde 1024px) --- */
 @media (min-width: 1024px) {
-  .serviceRowNew {
-    flex-direction: row; /* Diseño horizontal */
-    align-items: center;
-    gap: 100px;
-  }
-
-  /* El truco del "Zig-Zag": Filas pares invertidas */
-  .serviceRowNew:nth-child(even) {
-    flex-direction: row-reverse;
-  }
-
-  .serviceVisualBox {
-    flex: 1.2; /* La imagen un poco más grande que el texto */
-  }
-
-  .serviceTextBox {
-    flex: 0.8;
-  }
-
-  .serviceTitleBig {
-    font-size: 2.8rem;
-  }
-
-  .serviceDescBig {
-    font-size: 1.25rem;
-  }
-  
-  .imgContainer {
-    aspect-ratio: 4 / 3; /* Más cuadrada en PC para look de galería */
-  }
-}
-
-/* --- 3. MÓVILES PEQUEÑOS --- */
-@media (max-width: 480px) {
-  .heroServices {
-    padding: 100px 0 60px 0;
-  }
-  
-  .servicesList {
-    padding: 60px 0;
-  }
+  .detailsList { grid-template-columns: 1fr 1fr; }
 }
