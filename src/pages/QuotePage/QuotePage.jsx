@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Importamos useRef
 import { useLocation } from 'react-router-dom';
 import styles from '../../css/quote.module.css';
 
 const QuotePage = () => {
   const location = useLocation();
+  const quoteSectionRef = useRef(null); // Referencia para el anclaje
+
   const [language] = useState(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const forcedLang = urlParams.get('lang');
@@ -15,10 +17,19 @@ const QuotePage = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (location.state?.service) {
+    if (location.state && location.state.service) {
       setSelectedService(location.state.service);
+
+      // SCROLL AUTOMÁTICO AL ID
+      // Esperamos un momento a que el DOM procese el cambio de estado
+      setTimeout(() => {
+        quoteSectionRef.current?.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' // Lleva el elemento al inicio de la pantalla
+        });
+      }, 100);
     }
-  }, [location]);
+  }, [location.state]);
 
   const pricing = {
     landing: { es: '200.000', en: '500', code: language === 'es' ? 'CLP' : 'USD' },
@@ -26,7 +37,6 @@ const QuotePage = () => {
     redesign: { es: 'Cotizable', en: 'Custom Quote', code: '' }
   };
 
-  // Información detallada por servicio
   const specs = {
     landing: {
       es: ["1 Página (Secciones infinitas)", "SEO Google Básico", "Hosting & Dominio (.cl/.com) x 1 año", "Formulario de Contacto", "Certificado SSL (Candadito)"],
@@ -93,11 +103,11 @@ const QuotePage = () => {
   return (
     <div className={`${styles.mainWrapper} ${styles[selectedService]}`}>
       <div className={styles.contentHeader}>
-        
         <h1>{content.title}</h1>
       </div>
 
-      <div className={styles.selectorWrapper}>
+      {/* ASIGNAMOS EL ID/REF AQUÍ PARA QUE EL SCROLL LLEGUE A LOS BOTONES */}
+      <div ref={quoteSectionRef} className={styles.selectorWrapper}>
         <div className={styles.segmentedControl}>
           <button className={selectedService === 'landing' ? styles.activeOption : ''} onClick={() => setSelectedService('landing')}>Landing</button>
           <button className={selectedService === 'website' ? styles.activeOption : ''} onClick={() => setSelectedService('website')}>Website</button>

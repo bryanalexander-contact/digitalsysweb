@@ -39,7 +39,6 @@ const Header = () => {
 
       <nav className={`${styles.navLinks} ${isMenuOpen ? styles.navActive : ''}`}>
         <Link to="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Inicio</Link>
-        <Link to="/about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Sobre nosotros</Link>
         <Link to="/services" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Servicios</Link>
         <Link to="/quote" className={styles.btnQuote} onClick={() => setIsMenuOpen(false)}>Cotizar</Link>
         

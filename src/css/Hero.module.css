@@ -1,26 +1,27 @@
-/* ============================================================
-   1. ESTILOS BASE / CELULAR (Pantallas < 768px)
-   Aquí el diseño es una sola columna centrada.
-   ============================================================ */
-
 .heroClay {
   min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 100px 6% 60px 6%; /* Más espacio arriba para el header */
+  padding: 120px 6% 60px 6%;
   background-color: #fff;
   overflow: hidden;
 }
 
 .heroContentWrapper {
   display: flex;
-  flex-direction: column; /* Una columna por defecto */
+  flex-direction: column;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  gap: 60px; /* Distancia entre botones y video */
+}
+
+.heroTopRow {
+  display: flex;
+  flex-direction: column; /* Móvil: Título arriba de Burbuja (aunque la burbuja esté oculta) */
   align-items: center;
-  text-align: center; /* Texto centrado en móvil */
+  text-align: center;
   gap: 40px;
 }
 
@@ -41,215 +42,131 @@
 
 .heroTitle {
   font-family: 'Inter', sans-serif !important;
-  font-size: 2.2rem; /* Tamaño móvil fijo o clamp pequeño */
+  font-size: clamp(2rem, 8vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 40px;
   color: #000000;
-  width: 100%;
-  max-width: 100%;
 }
 
+/* BOTONES SIEMPRE EN FILA */
 .heroBtns {
   display: flex;
-  flex-direction: column; /* Botones apilados en móvil */
-  gap: 15px;
+  flex-direction: row; 
+  gap: 12px;
   width: 100%;
-  max-width: 300px; /* Para que no sean infinitos */
+  max-width: 500px;
   margin: 0 auto;
 }
 
 .btnQuote, .btnContact {
-  padding: 16px 32px;
+  flex: 1;
+  padding: 16px 10px;
   border-radius: 100px;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid #000;
-  display: block; /* Ocupan todo el ancho disponible */
   text-align: center;
+  white-space: nowrap;
 }
 
 .btnQuote { background-color: #fff; color: #000; }
 .btnContact { background-color: #000; color: #fff; }
 
-/* BLOBS: En móvil los hacemos más pequeños o los ocultamos */
-.heroRight {
+/* VIDEO 1:1 ANCHO COMPLETO */
+.heroVideoContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.blobContainer {
-  display: none;
-  position: relative;
-  width: 280px; /* Tamaño reducido para móvil */
-  height: 280px;
-}
-
-.glassMorph {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-}
-
-.blobMain {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
-  z-index: 1;
-}
-
-.blobSecondary {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  background: rgba(0, 0, 0, 0.02);
-  border-radius: 50%;
-  top: -15px;
-  right: -15px;
-  z-index: 2;
 }
 
 .heroVideoMobile {
-  /* Tamaño cuadrado exacto solicitado */
-  width: 100vw; 
-  aspect-ratio: 1 / 1;
-  
-  /* Evita que el video se vea estirado */
-  object-fit: cover; 
-  
-  /* Estética Pro: Bordes muy redondeados y sombra suave */
-  border-radius: 0px;
-  max-width: 450px;
-  
-  /* Centrado en la columna móvil */
-  display: block;
-  margin: 0 auto;
-  
-  /* Optimización para móviles */
-  pointer-events: none; /* Evita que el usuario lo pause accidentalmente al hacer scroll */
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Cuadrado perfecto */
+  object-fit: cover;
+  border-radius: 40px;
+  max-width: 100%; /* Ocupa todo el ancho disponible */
+  pointer-events: none;
 }
 
+/* BURBUJA OCULTA EN MÓVIL */
+.blobContainer { display: none; }
 
 /* ============================================================
-   2. TABLET (Desde 768px hasta 1023px)
-   Aquí empezamos a estirar el diseño.
+   TABLET (768px - 1023px)
    ============================================================ */
 @media (min-width: 768px) {
-  .heroTitle {
-    font-size: 2.8rem;
-  }
-
-  .heroBtns {
-    flex-direction: row; /* Botones uno al lado del otro */
-    max-width: 100%;
-    justify-content: center;
-  }
-
-  .btnQuote, .btnContact {
-    display: inline-block;
-    width: auto;
-  }
-
-  .blobContainer {
-    display:none;
-    width: 380px;
-    height: 380px;
-  }
-
   .heroVideoMobile {
-    /* Agrandado proporcionalmente para tablets */
-    width: 480px;
-    height: 480px;
     border-radius: 60px;
+    max-width: 80%; /* Un poco más contenido en tablets */
   }
 }
 
-
-
 /* ============================================================
-   3. PC / DESKTOP (Desde 1024px en adelante)
-   Aquí es donde el diseño se vuelve horizontal (estilo Clay).
+   PC / DESKTOP (Desde 1024px)
    ============================================================ */
 @media (min-width: 1024px) {
-  .heroClay {
-    height: 100vh;
-    padding: 0 8%;
-  }
-
-  .heroContentWrapper {
-    flex-direction: row; /* Texto izquierda, Burbuja derecha */
+  .heroTopRow {
+    flex-direction: row; /* Título izquierda, Burbuja derecha */
     text-align: left;
     justify-content: space-between;
-    gap: 20px;
   }
 
   .heroLeft {
-    flex: 0 1 900px;
+    flex: 0 1 800px;
     text-align: left;
   }
 
-  .heroTitle {
-    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
-    max-width: 850px;
-    margin-left: 0;
-  }
-
   .heroBtns {
+    margin-left: 0;
     justify-content: flex-start;
   }
 
+  /* REAPARECE BURBUJA EN PC */
   .heroRight {
     flex: 1;
+    display: flex;
     justify-content: flex-end;
   }
 
   .blobContainer {
-    display:block;
-    width: 520px;
-    height: 520px;
-    margin-right: -80px; /* Efecto de salida de pantalla lateral */
+    display: block;
+    position: relative;
+    width: 450px;
+    height: 450px;
+  }
+
+  .glassMorph {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+  }
+
+  .blobMain {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
+    z-index: 1;
   }
 
   .blobSecondary {
-    width: 200px;
-    height: 200px;
-    top: -30px;
-    right: -30px;
-  }
-
-  /* Efectos Hover solo en PC */
-  .btnQuote:hover {
-    background-color: #000;
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
-  .btnContact:hover {
-    background-color: #fff;
-    color: #000;
-    transform: translateY(-2px);
+    position: absolute;
+    width: 180px; height: 180px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 50%;
+    top: -20px; right: -20px;
+    z-index: 2;
   }
 
   .heroVideoMobile {
-    /* Tamaño imponente para escritorio */
-    width: 550px;
-    height: 550px;
-    
-    /* Ajuste de posición: se alinea a la derecha en el layout horizontal */
-    margin: 0; 
-    z-index: 10; /* Asegura que esté por encima de elementos decorativos como blobs */
-    
-    /* Suavizado extra para pantallas grandes */
+    max-width: 1200px; /* En PC se expande pero con un límite para no ser gigante */
     border-radius: 80px;
   }
 
+  /* Hovers */
+  .btnQuote:hover { background-color: #000; color: #fff; transform: translateY(-2px); }
+  .btnContact:hover { background-color: #fff; color: #000; transform: translateY(-2px); }
 }
-
-

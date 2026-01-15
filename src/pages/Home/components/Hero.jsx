@@ -19,72 +19,72 @@ export default function Hero() {
 
   return (
     <section className={styles.heroClay}>
+      {/* 1. SECCIÓN SUPERIOR: Contenido centrado con márgenes */}
       <div className={styles.heroContentWrapper}>
-        
-        {/* LADO IZQUIERDO: TEXTO */}
-        <div className={styles.heroLeft}>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={styles.kicker}
-          >
-            Agencia Digital
-          </motion.span>
+        <div className={styles.heroTopRow}>
+          <div className={styles.heroLeft}>
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={styles.kicker}
+            >
+              Agencia Digital
+            </motion.span>
 
-          <motion.h1
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className={styles.heroTitle}
-          >
-            Digitalsysweb es una agencia de desarrollo web profesional
-          </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className={styles.heroTitle}
+            >
+              Digitalsysweb es una agencia de desarrollo web profesional
+            </motion.h1>
 
-          <motion.div
-            className={styles.heroBtns}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <Link to="/quote" className={styles.btnQuote}>
-              Cotizar Proyecto
-            </Link>
-            <a href="#contact" className={styles.btnContact}>
-              Contactar
-            </a>
-          </motion.div>
-        </div>
-
-        {/* LADO DERECHO: VIDEO Y BURBUJA */}
-        <div className={styles.heroRight}>
-          {/* Este video solo se verá en móviles/tablets debajo del texto */}
-          <video
-            autoPlay loop muted playsInline
-            className={styles.heroVideoMobile}
-          >
-            <source src="/hero_videoWeb.webm" type="video/webm" />
-            <source src="/hero_videoMp4.mp4" type="video/mp4" />
-          </video>
-
-          {/* Esta burbuja solo se verá en PC */}
-          <div className={styles.blobContainer}>
             <motion.div
-              className={`${styles.blobMain} ${styles.glassMorph}`}
-              variants={blobVariants}
-              animate="animate"
-            />
-            <motion.div
-              className={`${styles.blobSecondary} ${styles.glassMorph}`}
-              animate={{
-                y: [0, 50, -30, 0],
-                x: [0, -30, 40, 0],
-                scale: [1, 1.2, 0.9, 1],
-              }}
-              transition={{ duration: 15, repeat: Infinity }}
-            />
+              className={styles.heroBtns}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Link to="/quote" className={styles.btnQuote}>
+                Cotizar Proyecto
+              </Link>
+              <a href="#contact" className={styles.btnContact}>
+                Contactar
+              </a>
+            </motion.div>
+          </div>
+
+          <div className={styles.heroRight}>
+            <div className={styles.blobContainer}>
+              <motion.div
+                className={`${styles.blobMain} ${styles.glassMorph}`}
+                variants={blobVariants}
+                animate="animate"
+              />
+              <motion.div
+                className={`${styles.blobSecondary} ${styles.glassMorph}`}
+                animate={{
+                  y: [0, 50, -30, 0],
+                  x: [0, -30, 40, 0],
+                  scale: [1, 1.2, 0.9, 1],
+                }}
+                transition={{ duration: 15, repeat: Infinity }}
+              />
+            </div>
           </div>
         </div>
+      </div>
 
+      {/* 2. SECCIÓN INFERIOR: Video ocupando todo el ancho y alto proporcional */}
+      <div className={styles.heroVideoContainerFull}>
+        <video
+          autoPlay loop muted playsInline
+          className={styles.heroVideoFull}
+        >
+          <source src="/hero_videoWeb.webm" type="video/webm" />
+          <source src="/hero_videoMp4.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
   );
