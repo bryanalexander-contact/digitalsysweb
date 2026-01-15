@@ -10,13 +10,16 @@ import Services from "./components/ServicesSection";
 import AboutSection from "./components/AboutSection";
 import FAQSection from "./components/FAQSection";
 import CTASection from "./components/CTASection";
+import HeroVideo from "./components/HeroVideo";
 // Lucide React (Solo si los usas aquí, si no, bórralos de este archivo)
 import { Zap, Monitor, BarChart3, Layers } from "lucide-react";
 
 const Home = () => {
   return (
     <div className="home-container">
+      
       <Hero />
+      <HeroVideo />
       <Information />
       <Services />
       <AboutSection />

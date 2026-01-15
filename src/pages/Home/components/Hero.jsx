@@ -19,7 +19,6 @@ export default function Hero() {
 
   return (
     <section className={styles.heroClay}>
-      {/* 1. SECCIÓN SUPERIOR: Contenido centrado con márgenes */}
       <div className={styles.heroContentWrapper}>
         <div className={styles.heroTopRow}>
           <div className={styles.heroLeft}>
@@ -74,17 +73,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* 2. SECCIÓN INFERIOR: Video ocupando todo el ancho y alto proporcional */}
-      <div className={styles.heroVideoContainerFull}>
-        <video
-          autoPlay loop muted playsInline
-          className={styles.heroVideoFull}
-        >
-          <source src="/hero_videoWeb.webm" type="video/webm" />
-          <source src="/hero_videoMp4.mp4" type="video/mp4" />
-        </video>
       </div>
     </section>
   );
