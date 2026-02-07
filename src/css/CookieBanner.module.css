@@ -1,0 +1,90 @@
+.clayBanner {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  z-index: 9999;
+  
+  /* Efecto Clay / Neumorfismo */
+  background: #ffffff;
+  border-radius: 30px; /* Bordes muy redondos estilo Clay.global */
+  padding: 20px 30px;
+  
+  /* Sombra suave y profunda para dar volumen */
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.link {
+  color: #000;
+  text-decoration: underline;
+  font-weight: 700;
+  margin-left: 5px;
+  transition: opacity 0.2s ease;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.btnAccept {
+  background: #1a1a1a; /* Negro sólido para contraste */
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  
+  /* Sombra interna para efecto de botón Clay */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btnAccept:hover {
+  background: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btnAccept:active {
+  transform: translateY(0);
+}
+
+/* Optimización para móviles */
+@media (max-width: 600px) {
+  .clayBanner {
+    bottom: 20px;
+    padding: 20px;
+  }
+  
+  .content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .btnAccept {
+    width: 100%;
+  }
+}

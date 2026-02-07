@@ -1,36 +1,29 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "../../../css/HeroVideo.module.css";
 
 export default function HeroVideo() {
   const containerRef = useRef(null);
-  const [isTablet, setIsTablet] = useState(false);
-
-  // Detectamos si es tablet para activar la lógica de animación
-  useEffect(() => {
-    const checkTablet = () => {
-      setIsTablet(window.innerWidth >= 768 && window.innerWidth <= 1023);
-    };
-    checkTablet();
-    window.addEventListener("resize", checkTablet);
-    return () => window.removeEventListener("resize", checkTablet);
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "center center"],
+    offset: ["start end", "center center"], 
   });
 
-  // Animación de expansión: de 85% a 100%
-  const tabletWidth = useTransform(scrollYProgress, [0, 1], ["85%", "100%"]);
+  // Animación para TABLET: De 85% a 100% (llena la pantalla)
+  const widthTablet = useTransform(scrollYProgress, [0, 1], ["85%", "100%"]);
+
+  // Animación para PC: De 80% a 94% (crece pero mantiene márgenes)
+  const widthPC = useTransform(scrollYProgress, [0, 1], ["80%", "94%"]);
 
   return (
     <div className={styles.mainWrapper} ref={containerRef}>
       <motion.div 
         className={styles.heroVideoContainer}
         style={{ 
-          // Solo si es Tablet aplicamos el width animado de Framer Motion
-          width: isTablet ? tabletWidth : undefined 
+          width: typeof window !== 'undefined' 
+            ? (window.innerWidth >= 1024 ? widthPC : (window.innerWidth >= 768 ? widthTablet : "100vw"))
+            : "100vw"
         }}
       >
         <video

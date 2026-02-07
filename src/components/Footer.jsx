@@ -1,57 +1,56 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../css/footer.module.css';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={styles.mainFooter}>
+    <footer className={styles.mainFooter} role="contentinfo">
       <div className={styles.footerContainer}>
-        {/* Parte Superior */}
         <div className={styles.footerTop}>
-          <div className={styles.footerBrand}>
-            <h2 className={styles.footerLogo}>DIGITAL SYS</h2>
-            <p className={styles.footerTagline}>
-              Elevando el estándar digital a través del diseño y la tecnología.
+          <div className={styles.footerBrand} itemScope itemType="https://schema.org/Organization">
+            {/* SEO: El nombre de la marca en el footer refuerza el branding */}
+            <h2 className={styles.footerLogo} itemProp="name">DigitalSysWeb</h2>
+            <p className={styles.footerTagline} itemProp="description">
+              Elevando el estándar digital a través del diseño web premium y tecnología de vanguardia.
             </p>
           </div>
 
           <div className={styles.footerRightContent}>
-            {/* Navegación */}
-            <div className={styles.footerNavLinks}>
-              <a href="#about">Sobre nosotros</a>
-              <a href="#services">Servicios</a>
-              <a href="#contact">Contacto</a>
-              <a href="#quote" className={styles.quoteLink}>Cotizar</a>
-            </div>
+            <nav className={styles.footerNavLinks} aria-label="Enlaces rápidos footer">
+              <Link to="/about">Sobre nosotros</Link>
+              <Link to="/services">Servicios Digitales</Link>
+              <Link to="/contact">Contacto Directo</Link>
+              <Link to="/quote" className={styles.quoteLink}>Cotizar Presupuesto</Link>
+            </nav>
 
-            {/* Datos de contacto */}
             <div className={styles.footerContactGrid}>
               <div className={styles.contactItem}>
                 <span className={styles.label}>Escríbenos</span>
-                <a href="mailto:digitalsysweb@gmail.com">digitalsysweb@gmail.com</a>
+                <a href="mailto:digitalsysweb@gmail.com" title="Enviar correo a Digital Sys Web">digitalsysweb@gmail.com</a>
               </div>
               <div className={styles.contactItem}>
                 <span className={styles.label}>Llámanos</span>
-                <a href="tel:+56958678410">+56 9 5867 8410</a>
+                {/* SEO LOCAL: El formato de teléfono debe ser internacional */}
+                <a href="tel:+56958678410" title="Llamar a soporte técnico">+56 9 5867 8410</a>
               </div>
             </div>
           </div>
         </div>
 
-        <hr className={styles.footerDivider} />
+        <hr className={styles.footerDivider} aria-hidden="true" />
 
-        {/* Parte Inferior */}
         <div className={styles.footerBottom}>
           <div className={styles.footerCopyright}>
-            <p>&copy; {currentYear} Digital Sys Web. Todos los derechos reservados.</p>
+            <p>&copy; {currentYear} Digital Sys Web. Expertos en Desarrollo Web en Chile y el Mundo.</p>
           </div>
 
-          <div className={styles.footerLegal}>
-            <a href="/cookies">Política de Cookies</a>
-            <a href="/privacidad">Privacidad</a>
-            <a href="/terminos">Términos y Condiciones</a>
-          </div>
+          <nav className={styles.footerLegal} aria-label="Información legal">
+            <Link to="/cookies" rel="nofollow">Política de Cookies</Link>
+            <Link to="/privacy" rel="nofollow">Privacidad</Link>
+            <Link to="/terms" rel="nofollow">Términos y Condiciones</Link>
+          </nav>
         </div>
       </div>
     </footer>

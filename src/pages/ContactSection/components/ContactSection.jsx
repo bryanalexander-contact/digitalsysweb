@@ -31,7 +31,7 @@ const ContactSection = () => {
 
   return (
     <main className={styles.contactContainer}>
-      {/* HERO SECTION */}
+      {/* SECCIÓN HERO INTEGRADA */}
       <section className={styles.contactHero}>
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -40,62 +40,51 @@ const ContactSection = () => {
         >
           <h1 className={styles.heroTitle}>Hablemos.</h1>
           <p className={styles.heroSubtitle}>
-            Nos encantaría saber más sobre usted y lo que podemos diseñar y construir juntos.
+            Diseño web premium y soluciones digitales para marcas que buscan autoridad.
           </p>
         </motion.div>
         
         <div className={styles.heroLinks}>
           <div className={styles.linkGroup}>
-            <span>Conviértete en cliente</span>
+            <span>Contacto Directo</span>
             <a href="mailto:digitalsysweb@gmail.com" className={styles.contactLink}>digitalsysweb@gmail.com</a>
           </div>
           <div className={styles.linkGroup}>
-            <span>Únase a nosotros</span>
-            <a href="https://wa.me/56958678410" target="_blank" className={styles.contactLink}>WhatsApp Directo</a>
+            <span>WhatsApp</span>
+            <a href="https://wa.me/56958678410" target="_blank" rel="noopener noreferrer" className={styles.contactLink}>+56 9 5867 8410</a>
           </div>
         </div>
-
-        <motion.div 
-          className={styles.scrollInvite}
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          onClick={() => document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' })}
-        >
-          <p>Escríbenos debajo</p>
-          <span className={styles.arrowDown}>↓</span>
-        </motion.div>
       </section>
 
       <hr className={styles.divider} />
 
-      {/* FORM SECTION */}
+      {/* SECCIÓN FORMULARIO */}
       <section id="form-section" className={styles.formSection}>
         <div className={styles.formGrid}>
           <div className={styles.formInfo}>
-            <h2 className={styles.formTitle}>Escríbenos</h2>
+            <h2 className={styles.formTitle}>Cuéntanos tu proyecto</h2>
             <p className={styles.formText}>
-              Responderemos para atender su caso a la máxima brevedad posible. 
-              Estamos listos para dar vida a tu próximo proyecto digital.
+              Estamos listos para escalar tu negocio. Responderemos a tu solicitud en menos de 24 horas hábiles.
             </p>
           </div>
 
           <form className={styles.contactForm} ref={formRef} onSubmit={sendEmail}>
             <div className={styles.inputGroup}>
-              <label>Nombre</label>
-              <input type="text" name="nombre" placeholder="Tu nombre" onChange={handleChange} required />
+              <label htmlFor="nombre">Nombre Completo</label>
+              <input id="nombre" type="text" name="nombre" placeholder="Ej: Juan Pérez" onChange={handleChange} required />
             </div>
             <div className={styles.inputGroup}>
-              <label>Correo</label>
-              <input type="email" name="correo" placeholder="tu@correo.com" onChange={handleChange} required />
+              <label htmlFor="correo">Correo Electrónico</label>
+              <input id="correo" type="email" name="correo" placeholder="tu@correo.com" onChange={handleChange} required />
             </div>
             <div className={styles.inputGroup}>
-              <label>Mensaje</label>
-              <textarea name="mensaje" rows="4" placeholder="Cuéntanos sobre tu proyecto" onChange={handleChange} required />
+              <label htmlFor="mensaje">Mensaje o Detalles del Proyecto</label>
+              <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" onChange={handleChange} required />
             </div>
 
             <div className={styles.buttonGroup}>
-              <button type="submit" className={styles.btnPrimary}>Enviar Correo</button>
-              <button type="button" onClick={sendWhatsApp} className={styles.btnSecondary}>Vía WhatsApp</button>
+              <button type="submit" className={styles.btnPrimary} aria-label="Enviar formulario por correo">Enviar Correo</button>
+              <button type="button" onClick={sendWhatsApp} className={styles.btnSecondary} aria-label="Contactar por WhatsApp">Vía WhatsApp</button>
             </div>
           </form>
         </div>

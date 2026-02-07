@@ -1,8 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Helmet } from 'react-helmet-async'; // Importamos Helmet
 import styles from '../../css/About.module.css';
 
 const About = () => {
+  // Configuración de SEO específica para esta página
+  const seoData = {
+    title: "Sobre Nosotros | Digital Sys Web - Expertos en Diseño Digital",
+    description: "En DigitalSysweb transformamos marcas con interfaces de alta calidad, autoridad y minimalismo absoluto. Conoce nuestra visión de diseño premium.",
+    url: "https://digitalsysweb.com/about",
+    image: "https://digitalsysweb.com/og-about.jpg" // Imagen recomendada para compartir
+  };
+
   // Animación para el núcleo (movimiento muy lento)
   const coreAnim = {
     animate: {
@@ -33,6 +42,26 @@ const About = () => {
 
   return (
     <div className={styles.clayPageWrapper}>
+      {/* SECCIÓN SEO: Helmet inyecta estas etiquetas en el <head> */}
+      <Helmet>
+        <title>{seoData.title}</title>
+        <meta name="description" content={seoData.description} />
+        <link rel="canonical" href={seoData.url} />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={seoData.url} />
+        <meta property="og:title" content={seoData.title} />
+        <meta property="og:description" content={seoData.description} />
+        <meta property="og:image" content={seoData.image} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seoData.title} />
+        <meta name="twitter:description" content={seoData.description} />
+        <meta name="twitter:image" content={seoData.image} />
+      </Helmet>
+
       <section className={styles.heroClay}>
         
         {/* LADO IZQUIERDO: TEXTO */}
@@ -51,12 +80,13 @@ const About = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
           >
-            Diseñamos interfaces que respiran autoridad y minimalismo absoluto.
+            Diseñamos interfaces que respiran autoridad y minimalismo absoluto. Especialistas en posicionamiento de marca y desarrollo web de alto impacto.
           </motion.p>
         </div>
 
         {/* LADO DERECHO: ECOSISTEMA DE CÍRCULOS */}
-        <div className={styles.sphereEcosystem}>
+        {/* Añadimos aria-hidden porque es un elemento puramente decorativo */}
+        <div className={styles.sphereEcosystem} aria-hidden="true">
           <div className={styles.sphereContainer}>
             {/* Círculo Núcleo */}
             <motion.div className={styles.coreSphere} {...coreAnim} />
@@ -76,8 +106,11 @@ const About = () => {
 
       <section className={styles.contentDark}>
         <div className={styles.container}>
-          <h2>Resultados Competitivos</h2>
-          <p>Elevamos tu presencia digital al siguiente nivel.</p>
+          <h2>Resultados Competitivos en el Mercado Digital</h2>
+          <p>
+            Elevamos tu presencia digital al siguiente nivel utilizando tecnologías de vanguardia 
+            como React y estrategias de optimización avanzadas para garantizar que tu marca destaque.
+          </p>
         </div>
       </section>
     </div>

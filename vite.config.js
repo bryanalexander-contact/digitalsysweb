@@ -1,28 +1,47 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react' // Cambiado a la versión estándar actual
+import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import prerender from 'vite-plugin-prerender'
+import prerender from '@prerenderer/rollup-plugin'
+import Sitemap from 'vite-plugin-sitemap'
 
-// --- ESTO SOLUCIONA EL ERROR DE __DIRNAME ---
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-// --------------------------------------------
+
+// Definimos todas las rutas que mencionaste
+const routes = [
+  '/', 
+  '/services', 
+  '/about', 
+  '/quotepage', 
+  '/cookies', 
+  '/terms', 
+  '/privacy'
+]
 
 export default defineConfig({
   plugins: [
     react(),
+    // Configuración del Sitemap y Robots.txt
+    Sitemap({
+      hostname: 'https://digitalsysweb.com', 
+      dynamicRoutes: routes,
+      generateRobotsTxt: true,
+      robots: [{
+        userAgent: '*',
+        allow: '/',
+        sitemap: 'https://digitalsysweb.com/sitemap.xml'
+      }]
+    }),
+    // Configuración de Prerender mejorada
     prerender({
-      // 1. Ahora __dirname funcionará correctamente
+      routes: routes,
+      renderer: '@prerenderer/renderer-puppeteer',
       staticDir: path.join(__dirname, 'dist'),
-      
-      // 2. Tus rutas
-      routes: ['/', '/quote', '/contact', '/services'], 
-      
-      // 3. Opciones del navegador invisible
       rendererOptions: {
         maxConcurrentRoutes: 1,
-        renderAfterTime: 500, 
+        renderAfterTime: 500, // Espera medio segundo para asegurar que React cargue el contenido
+        headless: true // Ejecuta el navegador en segundo plano
       },
     }),
   ],
