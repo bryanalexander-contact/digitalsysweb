@@ -18,7 +18,7 @@ const Cookies = () => {
   return (
     <div className={styles.pageWrapper}>
       <Helmet>
-        <title>Política de Cookies | Digital Sys Web</title>
+        <title>Política de Cookies | DigitalSysWeb</title>
         <meta name="description" content="Información detallada sobre cómo utilizamos las cookies en Digital Sys Web para mejorar su experiencia de usuario." />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
