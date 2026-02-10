@@ -1,16 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 import styles from "../../../css/AboutSection.module.css";
 
 // Imágenes
-import conversionImg from "../../../assets/images/carrousel/conversion.jpg";
-import experienceImg from "../../../assets/images/carrousel/experience.jpg";
-import precisionImg from "../../../assets/images/carrousel/precision.jpg";
-import reliabilityImg from "../../../assets/images/carrousel/reliability.jpg";
-import scalabilityImg from "../../../assets/images/carrousel/scalability.jpg";
-import speedImg from "../../../assets/images/carrousel/speed.jpg";
+import conversionImg from "../../../assets/images/carrousel/conversion.webp";
+import experienceImg from "../../../assets/images/carrousel/experience.webp";
+import precisionImg from "../../../assets/images/carrousel/precision.webp";
+import reliabilityImg from "../../../assets/images/carrousel/reliability.webp";
+import scalabilityImg from "../../../assets/images/carrousel/scalability.webp";
+import speedImg from "../../../assets/images/carrousel/speed.webp";
 
-// Duplicamos los items para el efecto infinito real
 const carouselItems = [
   { image: conversionImg, text: "Conversión" },
   { image: experienceImg, text: "Experiencia" },
@@ -20,47 +19,41 @@ const carouselItems = [
   { image: speedImg, text: "Velocidad" },
 ];
 
-const infiniteItems = [...carouselItems, ...carouselItems, ...carouselItems];
-
 export default function AboutSection() {
   const [hoverSide, setHoverSide] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   
   const x = useMotionValue(0);
-  // Reducimos stiffness para mayor suavidad al cambiar de rumbo
   const springX = useSpring(x, { stiffness: 40, damping: 25, mass: 0.8 });
   const trackRef = useRef(null);
 
+  // OPTIMIZACIÓN 1: Solo triplicamos si es Desktop (para el loop infinito)
+  // En móvil solo mandamos las 6 originales. Menos peso = mejor nota.
+  const displayItems = useMemo(() => {
+    return isMobile ? carouselItems : [...carouselItems, ...carouselItems, ...carouselItems];
+  }, [isMobile]);
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+    const mediaQuery = window.matchMedia("(max-width: 1023px)");
+    const handleMediaChange = (e) => setIsMobile(e.matches);
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleMediaChange);
     
     let animationFrame;
     const move = () => {
+      // La lógica de movimiento solo corre en Desktop
       if (!isMobile && hoverSide) {
-        const speed = 4; // VELOCIDAD REDUCIDA PARA MAYOR ELEGANCIA
+        const speed = 4;
         const delta = hoverSide === "right" ? -speed : speed;
-        
         let currentX = x.get();
         let newX = currentX + delta;
 
-        // LÓGICA DE LOOP INFINITO REAL
         if (trackRef.current) {
           const trackWidth = trackRef.current.scrollWidth;
           const oneThird = trackWidth / 3;
-
-          // Si el scroll avanza mucho a la izquierda, resetea al centro sin que se note
-          if (newX < -oneThird * 2) {
-            newX = -oneThird;
-            x.jump(newX); // 'jump' evita que el spring intente animar el salto
-          } 
-          // Si retrocede mucho a la derecha, resetea al centro
-          else if (newX > 0) {
-            newX = -oneThird;
-            x.jump(newX);
-          }
+          if (newX < -oneThird * 2) { newX = -oneThird; x.jump(newX); } 
+          else if (newX > 0) { newX = -oneThird; x.jump(newX); }
         }
         x.set(newX);
       }
@@ -69,19 +62,17 @@ export default function AboutSection() {
     
     move();
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      mediaQuery.removeEventListener("change", handleMediaChange);
       cancelAnimationFrame(animationFrame);
     };
   }, [hoverSide, isMobile, x]);
 
   const handleMouseMove = (e) => {
     if (isMobile) return;
-    const { clientX, clientY } = e;
+    setMousePos({ x: e.clientX, y: e.clientY });
     const width = window.innerWidth;
-    setMousePos({ x: clientX, y: clientY });
-
-    if (clientX < width / 3) setHoverSide("left");
-    else if (clientX > (width * 2) / 3) setHoverSide("right");
+    if (e.clientX < width / 3) setHoverSide("left");
+    else if (e.clientX > (width * 2) / 3) setHoverSide("right");
     else setHoverSide(null);
   };
 
@@ -91,19 +82,24 @@ export default function AboutSection() {
       onMouseMove={handleMouseMove} 
       onMouseLeave={() => setHoverSide(null)}
     >
-      {/* FLECHA PERSONALIZADA */}
+      {/* CURSOR: Solo existe en Desktop */}
       {!isMobile && (
         <div 
           className={`${styles.customCursor} ${hoverSide ? styles.visible : ''}`}
-          style={{ left: mousePos.x, top: mousePos.y }}
+          style={{ 
+            transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
+            left: 0, 
+            top: 0,
+            position: 'fixed' // Importante para que siga el mouse correctamente
+          }}
         >
           {hoverSide === 'left' ? (
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#b87333" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#b87333" strokeWidth="2.5">
               <line x1="19" y1="12" x2="5" y2="12"></line>
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           ) : (
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#b87333" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#b87333" strokeWidth="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
@@ -113,39 +109,36 @@ export default function AboutSection() {
 
       <div className={styles.container}>
         <div className={styles.carouselWrapper}>
-          {isMobile ? (
-            <div className={styles.trackMobile}>
-              {infiniteItems.map((item, index) => (
-                <div key={index} className={styles.carouselItem}>
-                  <div className={styles.imageWrapper}>
-                    <img src={item.image} alt={item.text} className={styles.carouselImage} />
-                    <div className={styles.tagLabel}>
-                      <span>{item.text}</span>
-                    </div>
+          {/* OPTIMIZACIÓN 2: Usamos las clases de tu CSS */}
+          <motion.div 
+            ref={trackRef}
+            className={isMobile ? styles.trackMobile : styles.trackDesktop}
+            // Solo aplicamos la animación de Motion en Desktop
+            style={!isMobile ? { x: springX } : {}}
+          >
+            {displayItems.map((item, index) => (
+              <div key={`${item.text}-${index}`} className={styles.carouselItem}>
+                <div className={styles.imageWrapper}>
+                  <img 
+                    src={item.image} 
+                    alt={item.text} 
+                    className={styles.carouselImage}
+                    // OPTIMIZACIÓN 3: Carga inmediata solo para lo que se ve al inicio
+                    loading={index < 2 ? "eager" : "lazy"}
+                    // Ayuda al navegador con las dimensiones (evita saltos)
+                    width="300"
+                    height="375" 
+                  />
+                  <div className={styles.tagLabel}>
+                    <span>{item.text}</span>
                   </div>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <motion.div 
-              ref={trackRef}
-              className={styles.trackDesktop}
-              style={{ x: springX }}
-            >
-              {infiniteItems.map((item, index) => (
-                <div key={index} className={styles.carouselItem}>
-                  <div className={styles.imageWrapper}>
-                    <img src={item.image} alt={item.text} className={styles.carouselImage} />
-                    <div className={styles.tagLabel}>
-                      <span>{item.text}</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          )}
+              </div>
+            ))}
+          </motion.div>
         </div>
 
+        {/* CONTENIDO TEXTUAL */}
         <motion.div 
           className={styles.content}
           initial={{ opacity: 0, y: 30 }}
@@ -156,8 +149,7 @@ export default function AboutSection() {
           <span className={styles.kicker}>Nuestra Esencia</span>
           <h2 className={styles.title}>Creamos con propósito.</h2>
           <p className={styles.description}>
-            En Digitalsysweb no solo construimos interfaces, diseñamos el futuro de tu marca 
-            con una arquitectura técnica robusta y una estética que trasciende lo convencional.
+            En Digitalsysweb no solo construimos interfaces, diseñamos el futuro de tu marca...
           </p>
           <div className={styles.ctaContainer}>
             <a href="/about" className={styles.ctaLink}>

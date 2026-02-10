@@ -34,7 +34,7 @@ export default function HeroVideo() {
           className={styles.heroVideoFull}
         >
           <source src="/hero_videoWeb.webm" type="video/webm" />
-          <source src="/hero_videoMp4.mp4" type="video/mp4" />
+         
         </video>
       </motion.div>
     </div>

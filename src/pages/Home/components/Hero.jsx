@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import styles from "../../../css/Hero.module.css";
 
 export default function Hero() {
+  // Optimizamos las variantes para que sean más suaves
   const blobVariants = {    
     animate: {
       borderRadius: [
@@ -12,8 +13,13 @@ export default function Hero() {
         "67% 33% 47% 53% / 37% 48% 52% 63%",
         "30% 70% 70% 30% / 30% 30% 70% 70%",
       ],
+      // Usamos rotate Z para asegurar 2D/3D acceleration
       rotate: [0, 90, 180, 0],
-      transition: { duration: 20, repeat: Infinity, ease: "linear" },
+      transition: { 
+        duration: 20, 
+        repeat: Infinity, 
+        ease: "linear" 
+      },
     },
   };
 
@@ -56,11 +62,14 @@ export default function Hero() {
 
           <div className={styles.heroRight}>
             <div className={styles.blobContainer}>
+              {/* Blob Principal */}
               <motion.div
                 className={`${styles.blobMain} ${styles.glassMorph}`}
                 variants={blobVariants}
                 animate="animate"
+                style={{ willChange: "border-radius, transform" }}
               />
+              {/* Blob Secundario - Usamos translate3d via Motion */}
               <motion.div
                 className={`${styles.blobSecondary} ${styles.glassMorph}`}
                 animate={{
@@ -68,7 +77,8 @@ export default function Hero() {
                   x: [0, -30, 40, 0],
                   scale: [1, 1.2, 0.9, 1],
                 }}
-                transition={{ duration: 15, repeat: Infinity }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                style={{ willChange: "transform" }}
               />
             </div>
           </div>

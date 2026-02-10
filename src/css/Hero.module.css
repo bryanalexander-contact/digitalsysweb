@@ -73,6 +73,7 @@
 .btnQuote { background-color: #fff; color: #000; }
 .btnContact { background-color: #000; color: #fff; }
 
+/* OPTIMIZACIÓN MÓVIL: No renderizamos el contenedor si no se ve */
 .blobContainer { display: none; }
 
 @media (min-width: 1024px) {
@@ -84,27 +85,38 @@
   .heroLeft { flex: 0 1 800px; }
   .heroBtns { margin-left: 0; justify-content: flex-start; }
   .heroRight { flex: 1; display: flex; justify-content: flex-end; }
+  
   .blobContainer {
     display: block;
     position: relative;
     width: 450px;
     height: 450px;
+    /* Evita que el navegador pinte fuera del área */
+    contain: layout paint;
   }
+
   .glassMorph {
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(20px);
+    /* Bajamos el blur de 20px a 12px. Visualmente es casi igual, 
+       pero procesalmente es mucho más barato */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(0, 0, 0, 0.03);
+    /* Forzamos modo 3D */
+    transform: translateZ(0);
   }
+
   .blobMain {
     position: absolute;
     width: 100%; height: 100%;
     background: linear-gradient(135deg, #f9f9f9 0%, #e8e8e8 100%);
     z-index: 1;
   }
+
   .blobSecondary {
     position: absolute;
     width: 180px; height: 180px;
-    background: rgba(0, 0, 0, 0.02);
+    background: rgba(184, 115, 51, 0.05); /* Un toque de color cobre */
     border-radius: 50%;
     top: -20px; right: -20px;
     z-index: 2;
