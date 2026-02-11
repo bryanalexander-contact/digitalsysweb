@@ -23,7 +23,7 @@ export default function AboutSection() {
   const [hoverSide, setHoverSide] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
-  
+
   const x = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 40, damping: 25, mass: 0.8 });
   const trackRef = useRef(null);
@@ -39,8 +39,11 @@ export default function AboutSection() {
     const handleMediaChange = (e) => setIsMobile(e.matches);
     setIsMobile(mediaQuery.matches);
     mediaQuery.addEventListener("change", handleMediaChange);
-    
+
     let animationFrame;
+    let trackWidth = 0;
+    if (trackRef.current) trackWidth = trackRef.current.scrollWidth;
+
     const move = () => {
       // La lógica de movimiento solo corre en Desktop
       if (!isMobile && hoverSide) {
@@ -49,17 +52,16 @@ export default function AboutSection() {
         let currentX = x.get();
         let newX = currentX + delta;
 
-        if (trackRef.current) {
-          const trackWidth = trackRef.current.scrollWidth;
+        if (trackWidth > 0) {
           const oneThird = trackWidth / 3;
-          if (newX < -oneThird * 2) { newX = -oneThird; x.jump(newX); } 
+          if (newX < -oneThird * 2) { newX = -oneThird; x.jump(newX); }
           else if (newX > 0) { newX = -oneThird; x.jump(newX); }
         }
         x.set(newX);
       }
       animationFrame = requestAnimationFrame(move);
     };
-    
+
     move();
     return () => {
       mediaQuery.removeEventListener("change", handleMediaChange);
@@ -77,18 +79,18 @@ export default function AboutSection() {
   };
 
   return (
-    <section 
-      className={styles.aboutSection} 
-      onMouseMove={handleMouseMove} 
+    <section
+      className={styles.aboutSection}
+      onMouseMove={handleMouseMove}
       onMouseLeave={() => setHoverSide(null)}
     >
       {/* CURSOR: Solo existe en Desktop */}
       {!isMobile && (
-        <div 
+        <div
           className={`${styles.customCursor} ${hoverSide ? styles.visible : ''}`}
-          style={{ 
+          style={{
             transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
-            left: 0, 
+            left: 0,
             top: 0,
             position: 'fixed' // Importante para que siga el mouse correctamente
           }}
@@ -110,7 +112,7 @@ export default function AboutSection() {
       <div className={styles.container}>
         <div className={styles.carouselWrapper}>
           {/* OPTIMIZACIÓN 2: Usamos las clases de tu CSS */}
-          <motion.div 
+          <motion.div
             ref={trackRef}
             className={isMobile ? styles.trackMobile : styles.trackDesktop}
             // Solo aplicamos la animación de Motion en Desktop
@@ -119,15 +121,16 @@ export default function AboutSection() {
             {displayItems.map((item, index) => (
               <div key={`${item.text}-${index}`} className={styles.carouselItem}>
                 <div className={styles.imageWrapper}>
-                  <img 
-                    src={item.image} 
-                    alt={item.text} 
+                  <img
+                    src={item.image}
+                    alt={item.text}
                     className={styles.carouselImage}
                     // OPTIMIZACIÓN 3: Carga inmediata solo para lo que se ve al inicio
                     loading={index < 2 ? "eager" : "lazy"}
+                    decoding="async"
                     // Ayuda al navegador con las dimensiones (evita saltos)
                     width="300"
-                    height="375" 
+                    height="375"
                   />
                   <div className={styles.tagLabel}>
                     <span>{item.text}</span>
@@ -139,7 +142,7 @@ export default function AboutSection() {
         </div>
 
         {/* CONTENIDO TEXTUAL */}
-        <motion.div 
+        <motion.div
           className={styles.content}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

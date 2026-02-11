@@ -1,9 +1,22 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "../../../css/HeroVideo.module.css";
 
 export default function HeroVideo() {
   const containerRef = useRef(null);
+  const [device, setDevice] = useState("mobile");
+
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth;
+      if (w >= 1024) setDevice("pc");
+      else if (w >= 768) setDevice("tablet");
+      else setDevice("mobile");
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -21,9 +34,7 @@ export default function HeroVideo() {
       <motion.div
         className={styles.heroVideoContainer}
         style={{
-          width: typeof window !== 'undefined'
-            ? (window.innerWidth >= 1024 ? widthPC : (window.innerWidth >= 768 ? widthTablet : "100vw"))
-            : "100vw"
+          width: device === "pc" ? widthPC : (device === "tablet" ? widthTablet : "100vw")
         }}
       >
         <video

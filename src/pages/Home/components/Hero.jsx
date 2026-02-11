@@ -5,7 +5,7 @@ import styles from "../../../css/Hero.module.css";
 
 export default function Hero() {
   // Optimizamos las variantes para que sean más suaves
-  const blobVariants = {    
+  const blobVariants = {
     animate: {
       borderRadius: [
         "30% 70% 70% 30% / 30% 30% 70% 70%",
@@ -15,16 +15,16 @@ export default function Hero() {
       ],
       // Usamos rotate Z para asegurar 2D/3D acceleration
       rotate: [0, 90, 180, 0],
-      transition: { 
-        duration: 20, 
-        repeat: Infinity, 
-        ease: "linear" 
+      transition: {
+        duration: 20,
+        repeat: Infinity,
+        ease: "linear"
       },
     },
   };
 
   return (
-    <section className={styles.heroClay}>
+    <section className={`${styles.heroClay} hero-critical`}>
       <div className={styles.heroContentWrapper}>
         <div className={styles.heroTopRow}>
           <div className={styles.heroLeft}>

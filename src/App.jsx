@@ -8,7 +8,7 @@ import WhatsAppWidget from "./components/WhatsAppWidget";
 import CookieBanner from "./components/CookieBanner"; // Importamos el banner
 
 // Páginas Principales
-const Home = React.lazy(() => import("./pages/Home/Home"));
+import Home from "./pages/Home/Home";
 const About = React.lazy(() => import("./pages/About/About"));
 const Services = React.lazy(() => import("./pages/Services/Services"));
 const QuotePage = React.lazy(() => import("./pages/QuotePage/QuotePage"));
