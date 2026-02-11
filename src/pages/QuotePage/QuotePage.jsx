@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'; // Importamos useRef
+import Seo from '../../components/Seo';
 import { useLocation } from 'react-router-dom';
 import styles from '../../css/quote.module.css';
 
@@ -23,8 +24,8 @@ const QuotePage = () => {
       // SCROLL AUTOMÁTICO AL ID
       // Esperamos un momento a que el DOM procese el cambio de estado
       setTimeout(() => {
-        quoteSectionRef.current?.scrollIntoView({ 
-          behavior: 'smooth', 
+        quoteSectionRef.current?.scrollIntoView({
+          behavior: 'smooth',
           block: 'start' // Lleva el elemento al inicio de la pantalla
         });
       }, 100);
@@ -102,6 +103,12 @@ const QuotePage = () => {
 
   return (
     <div className={`${styles.mainWrapper} ${styles[selectedService]}`}>
+      <Seo
+        title="Cotizar Proyecto"
+        description="Obtén un presupuesto a medida para tu próximo proyecto digital. Elige entre Landing Pages, Sitios Web Completos o Rediseños."
+        url="https://digitalsysweb.com/quote"
+        image="https://digitalsysweb.com/logo2.svg"
+      />
       <div className={styles.contentHeader}>
         <h1>{content.title}</h1>
       </div>
@@ -144,7 +151,7 @@ const QuotePage = () => {
               <input type="text" placeholder={content.form.company} />
             </div>
             <textarea placeholder={content.form.message} rows="3"></textarea>
-            
+
             <button type="submit" className={styles.btnSubmit}>
               {content.form.submit}
             </button>

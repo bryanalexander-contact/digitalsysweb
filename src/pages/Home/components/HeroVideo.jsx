@@ -7,7 +7,7 @@ export default function HeroVideo() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "center center"], 
+    offset: ["start end", "center center"],
   });
 
   // Animación para TABLET: De 85% a 100% (llena la pantalla)
@@ -18,10 +18,10 @@ export default function HeroVideo() {
 
   return (
     <div className={styles.mainWrapper} ref={containerRef}>
-      <motion.div 
+      <motion.div
         className={styles.heroVideoContainer}
-        style={{ 
-          width: typeof window !== 'undefined' 
+        style={{
+          width: typeof window !== 'undefined'
             ? (window.innerWidth >= 1024 ? widthPC : (window.innerWidth >= 768 ? widthTablet : "100vw"))
             : "100vw"
         }}
@@ -31,10 +31,10 @@ export default function HeroVideo() {
           loop
           muted
           playsInline
+          preload="none"
           className={styles.heroVideoFull}
         >
           <source src="/hero_videoWeb.webm" type="video/webm" />
-         
         </video>
       </motion.div>
     </div>

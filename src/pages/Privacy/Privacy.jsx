@@ -1,19 +1,20 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../../components/Seo';
 import { motion } from 'framer-motion';
 import styles from '../../css/Privacy.module.css';
 
 const Privacy = () => {
   return (
     <div className={styles.pageWrapper}>
-      <Helmet>
-        <title>Política de Privacidad | Digital Sys Web</title>
-        <meta name="description" content="Nuestra política de privacidad explica cómo protegemos tus datos al usar nuestros formularios y servicios." />
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <Seo
+        title="Política de Privacidad"
+        description="Nuestra política de privacidad explica cómo protegemos tus datos al usar nuestros formularios y servicios."
+        url="https://digitalsysweb.com/privacy"
+        image="https://digitalsysweb.com/logo2.svg"
+      />
 
       <div className={styles.container}>
-        <motion.header 
+        <motion.header
           className={styles.header}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}

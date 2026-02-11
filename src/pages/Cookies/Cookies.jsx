@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../../components/Seo';
 import { motion } from 'framer-motion';
 import { useCookies } from 'react-cookie'; // Importamos para revocar
 import styles from '../../css/Cookies.module.css';
@@ -17,15 +17,16 @@ const Cookies = () => {
 
   return (
     <div className={styles.pageWrapper}>
-      <Helmet>
-        <title>Política de Cookies | DigitalSysWeb</title>
-        <meta name="description" content="Información detallada sobre cómo utilizamos las cookies en Digital Sys Web para mejorar su experiencia de usuario." />
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <Seo
+        title="Política de Cookies"
+        description="Información detallada sobre cómo utilizamos las cookies en Digital Sys Web para mejorar su experiencia de usuario."
+        url="https://digitalsysweb.com/cookies"
+        image="https://digitalsysweb.com/logo2.svg"
+      />
 
       <div className={styles.container}>
         <header className={styles.header}>
-          <motion.h1 
+          <motion.h1
             className={styles.title}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,7 +73,7 @@ const Cookies = () => {
           <section className={styles.clayCard} style={{ textAlign: 'center' }}>
             <h2>Tu Privacidad, Tu Control</h2>
             <p>Si deseas retirar tu consentimiento y que volvamos a mostrarte el banner de configuración, puedes hacerlo aquí:</p>
-            <button 
+            <button
               onClick={handleRevoke}
               style={{
                 backgroundColor: '#000',
@@ -92,9 +93,9 @@ const Cookies = () => {
           <section>
             <h2>Contacto</h2>
             <p>
-              Si tiene dudas, escríbanos a: 
+              Si tiene dudas, escríbanos a:
               <br />
-              <a href="mailto:digitalsysweb@gmail.com" style={{color: '#000', fontWeight: '600'}}>digitalsysweb@gmail.com</a>
+              <a href="mailto:digitalsysweb@gmail.com" style={{ color: '#000', fontWeight: '600' }}>digitalsysweb@gmail.com</a>
             </p>
           </section>
         </main>

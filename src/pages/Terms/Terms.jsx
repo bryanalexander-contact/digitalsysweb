@@ -1,19 +1,20 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import Seo from '../../components/Seo';
 import { motion } from 'framer-motion';
 import styles from '../../css/Terms.module.css';
 
 const Terms = () => {
   return (
     <div className={styles.pageWrapper}>
-      <Helmet>
-        <title>Términos y Condiciones | Digital Sys Web</title>
-        <meta name="description" content="Reglas y condiciones de uso para los servicios de diseño y desarrollo web de Digital Sys Web." />
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <Seo
+        title="Términos y Condiciones"
+        description="Reglas y condiciones de uso para los servicios de diseño y desarrollo web de Digital Sys Web."
+        url="https://digitalsysweb.com/terms"
+        image="https://digitalsysweb.com/logo2.svg"
+      />
 
       <div className={styles.container}>
-        <motion.header 
+        <motion.header
           className={styles.header}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}

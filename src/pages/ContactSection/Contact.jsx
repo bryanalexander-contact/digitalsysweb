@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import ContactSection from './components/ContactSection'; 
+import ContactSection from './components/ContactSection';
 
 const Contact = () => {
   const seoData = {
@@ -28,17 +28,13 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{seoData.title}</title>
-        <meta name="description" content={seoData.description} />
-        <link rel="canonical" href={seoData.url} />
-        <meta property="og:title" content={seoData.title} />
-        <meta property="og:description" content={seoData.description} />
-        <meta property="og:url" content={seoData.url} />
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
-      </Helmet>
+      <Seo
+        title="Contacto"
+        description="Contacta con Digital Sys Web. Estamos listos para dar vida a tu próximo proyecto digital. Escríbenos por correo o WhatsApp directo."
+        url="https://digitalsysweb.com/contact"
+        image="https://digitalsysweb.com/logo2.svg"
+        schema={jsonLd}
+      />
       <ContactSection />
     </>
   );

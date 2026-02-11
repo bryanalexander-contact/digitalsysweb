@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Helmet } from 'react-helmet-async'; // Importamos Helmet
+import Seo from '../../components/Seo'; // Importamos Seo
 import styles from '../../css/About.module.css';
 
 const About = () => {
@@ -42,41 +42,29 @@ const About = () => {
 
   return (
     <div className={styles.clayPageWrapper}>
-      {/* SECCIÓN SEO: Helmet inyecta estas etiquetas en el <head> */}
-      <Helmet>
-        <title>{seoData.title}</title>
-        <meta name="description" content={seoData.description} />
-        <link rel="canonical" href={seoData.url} />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={seoData.url} />
-        <meta property="og:title" content={seoData.title} />
-        <meta property="og:description" content={seoData.description} />
-        <meta property="og:image" content={seoData.image} />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={seoData.title} />
-        <meta name="twitter:description" content={seoData.description} />
-        <meta name="twitter:image" content={seoData.image} />
-      </Helmet>
+      {/* SECCIÓN SEO */}
+      <Seo
+        title="Sobre Nosotros"
+        description="En DigitalSysweb transformamos marcas con interfaces de alta calidad, autoridad y minimalismo absoluto. Conoce nuestra visión de diseño premium."
+        url="https://digitalsysweb.com/about"
+        image="https://digitalsysweb.com/logo2.svg"
+      />
 
       <section className={styles.heroClay}>
-        
+
         {/* LADO IZQUIERDO: TEXTO */}
         <div className={styles.heroContentLeft}>
-          <motion.h1 
-            initial={{ opacity: 0, x: -30 }} 
+          <motion.h1
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 1.2 }}
           >
-            Transformamos marcas digitales hacia una experiencia<br /> 
+            Transformamos marcas digitales hacia una experiencia<br />
             <span className={styles.accent}>de primera calidad</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }} 
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 1 }}
           >
@@ -90,15 +78,15 @@ const About = () => {
           <div className={styles.sphereContainer}>
             {/* Círculo Núcleo */}
             <motion.div className={styles.coreSphere} {...coreAnim} />
-            
+
             {/* Satélites revoloteando */}
-            <motion.div 
-              className={`${styles.satellite} ${styles.sat1}`} 
-              {...satelliteAnim(40, -50, 12, 0)} 
+            <motion.div
+              className={`${styles.satellite} ${styles.sat1}`}
+              {...satelliteAnim(40, -50, 12, 0)}
             />
-            <motion.div 
-              className={`${styles.satellite} ${styles.sat2}`} 
-              {...satelliteAnim(-50, 30, 15, 2)} 
+            <motion.div
+              className={`${styles.satellite} ${styles.sat2}`}
+              {...satelliteAnim(-50, 30, 15, 2)}
             />
           </div>
         </div>
@@ -108,7 +96,7 @@ const About = () => {
         <div className={styles.container}>
           <h2>Resultados Competitivos en el Mercado Digital</h2>
           <p>
-            Elevamos tu presencia digital al siguiente nivel utilizando tecnologías de vanguardia 
+            Elevamos tu presencia digital al siguiente nivel utilizando tecnologías de vanguardia
             como React y estrategias de optimización avanzadas para garantizar que tu marca destaque.
           </p>
         </div>

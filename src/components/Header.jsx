@@ -35,24 +35,25 @@ const Header = () => {
     <header className={headerClass} role="banner">
       {/* SEO: El logo debe llevar al inicio y tener un alt descriptivo con palabras clave */}
       <Link to="/" className={styles.logoContainer} aria-label="Digital Sys Web - Inicio">
-        <img 
-          src="/logo2.svg" 
-          alt="Digital Sys Web Logo - Agencia de Diseño y Desarrollo Web" 
-          className={styles.headerLogo} 
-          width="180" 
+        <img
+          src="/logo2.svg"
+          alt="Digital Sys Web Logo - Agencia de Diseño y Desarrollo Web"
+          className={styles.headerLogo}
+          width="180"
           height="45"
+          fetchpriority="high"
         />
       </Link>
 
       {/* SEO: Navegación semántica con roles de accesibilidad */}
-      <nav 
+      <nav
         className={`${styles.navLinks} ${isMenuOpen ? styles.navActive : ''}`}
         aria-label="Navegación principal"
       >
         <Link to="/" className={`${styles.navLink} ${location.pathname === '/' ? styles.active : ''}`} onClick={() => setIsMenuOpen(false)}>Inicio</Link>
         <Link to="/services" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Servicios</Link>
         <Link to="/quote" className={styles.btnQuote} onClick={() => setIsMenuOpen(false)}>Cotizar Proyecto</Link>
-        
+
         <Link to="/contact" className={`${styles.btnContactHeader} ${styles.desktopOnly}`} onClick={() => setIsMenuOpen(false)}>
           Contacto
         </Link>
@@ -63,8 +64,8 @@ const Header = () => {
           Contacto
         </Link>
         {/* ACCESIBILIDAD: Botón hamburguesa con labels para lectores de pantalla */}
-        <button 
-          className={styles.hamburger} 
+        <button
+          className={styles.hamburger}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-label="Abrir menú de navegación"
