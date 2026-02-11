@@ -40,7 +40,7 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className={styles.heroTitle}
+              className={`${styles.heroTitle} hero-title-critical`}
             >
               Digitalsysweb es una agencia de desarrollo web profesional
             </motion.h1>

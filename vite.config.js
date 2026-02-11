@@ -10,12 +10,12 @@ const __dirname = path.dirname(__filename)
 
 // Definimos todas las rutas que mencionaste
 const routes = [
-  '/', 
-  '/services', 
-  '/about', 
-  '/quotepage', 
-  '/cookies', 
-  '/terms', 
+  '/',
+  '/services',
+  '/about',
+  '/quotepage',
+  '/cookies',
+  '/terms',
   '/privacy'
 ]
 
@@ -24,7 +24,7 @@ export default defineConfig({
     react(),
     // Configuración del Sitemap y Robots.txt
     Sitemap({
-      hostname: 'https://digitalsysweb.com', 
+      hostname: 'https://digitalsysweb.com',
       dynamicRoutes: routes,
       generateRobotsTxt: true,
       robots: [{
@@ -45,4 +45,14 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor': ['react', 'react-dom', 'react-router-dom'],
+          'animations': ['framer-motion'],
+        }
+      }
+    }
+  }
 })
