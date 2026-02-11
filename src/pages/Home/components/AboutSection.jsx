@@ -3,12 +3,12 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 import styles from "../../../css/AboutSection.module.css";
 
 // Imágenes
-import conversionImg from "../../../assets/images/carrousel/conversion.webp";
-import experienceImg from "../../../assets/images/carrousel/experience.webp";
-import precisionImg from "../../../assets/images/carrousel/precision.webp";
-import reliabilityImg from "../../../assets/images/carrousel/reliability.webp";
-import scalabilityImg from "../../../assets/images/carrousel/scalability.webp";
-import speedImg from "../../../assets/images/carrousel/speed.webp";
+import conversionImg from "../../../assets/images/carrousel/conversion.jpg";
+import experienceImg from "../../../assets/images/carrousel/experience.jpg";
+import precisionImg from "../../../assets/images/carrousel/precision.jpg";
+import reliabilityImg from "../../../assets/images/carrousel/reliability.jpg";
+import scalabilityImg from "../../../assets/images/carrousel/scalability.jpg";
+import speedImg from "../../../assets/images/carrousel/speed.jpg";
 
 const carouselItems = [
   { image: conversionImg, text: "Conversión" },
