@@ -8,6 +8,7 @@ const ContactSection = () => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState({ nombre: '', correo: '', mensaje: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaError, setRecaptchaError] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -107,6 +108,12 @@ const ContactSection = () => {
               <label htmlFor="mensaje">Mensaje o Detalles del Proyecto</label>
               <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" onChange={handleChange} required />
             </div>
+
+            <p style={{ fontSize: '0.7rem', color: '#999', marginTop: '1rem' }}>
+              Este sitio está protegido por reCAPTCHA y se aplican la
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer"> Política de Privacidad</a> y los
+              <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer"> Términos de Servicio</a> de Google.
+            </p>
 
             <div className={styles.buttonGroup}>
               <button

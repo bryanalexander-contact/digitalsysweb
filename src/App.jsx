@@ -26,7 +26,7 @@ function App() {
       <Header />
 
       <main>
-        <React.Suspense fallback={<div style={{ height: '100vh', backgroundColor: '#fff' }}></div>}>
+        <React.Suspense fallback={null}>
           <Routes>
             {/* Rutas Principales */}
             <Route path="/" element={<Home />} />

@@ -8,6 +8,11 @@
     position: relative;
 }
 
+/* Hides the reCAPTCHA badge - disclaimer added in JSX */
+:global(.grecaptcha-badge) {
+    visibility: hidden !important;
+}
+
 /* HERO SECTION */
 .contactHero {
     min-height: 90vh;

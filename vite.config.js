@@ -13,7 +13,8 @@ const routes = [
   '/',
   '/services',
   '/about',
-  '/quotepage',
+  '/contact',
+  '/quote',
   '/cookies',
   '/terms',
   '/privacy'
@@ -40,8 +41,8 @@ export default defineConfig({
       staticDir: path.join(__dirname, 'dist'),
       rendererOptions: {
         maxConcurrentRoutes: 1,
-        renderAfterTime: 500, // Espera medio segundo para asegurar que React cargue el contenido
-        headless: true // Ejecuta el navegador en segundo plano
+        renderAfterTime: 2000, // Increased wait time to ensure full render
+        headless: true
       },
     }),
   ],
