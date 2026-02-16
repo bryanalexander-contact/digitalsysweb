@@ -5,6 +5,7 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 5%;
+    position: relative;
 }
 
 /* HERO SECTION */
@@ -120,7 +121,8 @@
     margin-bottom: 10px;
 }
 
-.inputGroup input, .inputGroup textarea {
+.inputGroup input,
+.inputGroup textarea {
     border: none;
     border-bottom: 1px solid #e0e0e0;
     padding: 12px 0;
@@ -130,27 +132,37 @@
     transition: 0.3s;
 }
 
-.inputGroup input:focus, .inputGroup textarea:focus {
+.inputGroup input:focus,
+.inputGroup textarea:focus {
     border-bottom: 1px solid #000;
 }
 
 /* BOTONES SIEMPRE EN ROW */
+.recaptchaContainer {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: flex-start;
+}
+
 .buttonGroup {
     display: flex;
-    flex-direction: row; /* Forzado en fila siempre */
+    flex-direction: row;
+    /* Forzado en fila siempre */
     gap: 12px;
     margin-top: 20px;
     width: 100%;
 }
 
-.btnPrimary, .btnSecondary {
+.btnPrimary,
+.btnSecondary {
     padding: 18px 10px;
     border-radius: 100px;
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
     transition: 0.3s;
-    flex: 1; /* Ambos crecen igual */
+    flex: 1;
+    /* Ambos crecen igual */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -158,15 +170,31 @@
     white-space: nowrap;
 }
 
-.btnPrimary { background: #000; color: #fff; border: 1px solid #000; }
-.btnPrimary:hover { background: #333; }
+.btnPrimary {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
 
-.btnSecondary { background: transparent; border: 1px solid #000; color: #000; }
-.btnSecondary:hover { background: #f9f9f9; }
+.btnPrimary:hover {
+    background: #333;
+}
+
+.btnSecondary {
+    background: transparent;
+    border: 1px solid #000;
+    color: #000;
+}
+
+.btnSecondary:hover {
+    background: #f9f9f9;
+}
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
-    .formGrid { gap: 50px; }
+    .formGrid {
+        gap: 50px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -191,11 +219,12 @@
     }
 
     /* Ajuste de texto para botones en móvil para que no se amontonen */
-    .btnPrimary, .btnSecondary {
+    .btnPrimary,
+    .btnSecondary {
         font-size: 0.8rem;
         padding: 16px 5px;
     }
-    
+
     .buttonGroup {
         gap: 8px;
     }

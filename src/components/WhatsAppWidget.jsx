@@ -1,4 +1,4 @@
-import React from 'react';
+import whatsappIcon from '../assets/images/whatsap_icon.svg';
 import styles from '../css/WhatsAppWidget.module.css';
 
 const WhatsAppWidget = () => {
@@ -18,7 +18,7 @@ const WhatsAppWidget = () => {
       title="Chat directo por WhatsApp"
     >
       <img
-        src="/src/assets/images/whatsap_icon.svg"
+        src={whatsappIcon}
         alt="Logotipo oficial de WhatsApp"
         /* SEO: Dimensiones para evitar Layout Shift (CLS) */
         width="35"

@@ -41,7 +41,7 @@ const Header = () => {
           className={styles.headerLogo}
           width="180"
           height="45"
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </Link>
 

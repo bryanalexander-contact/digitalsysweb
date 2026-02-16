@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import Seo from '../../components/Seo';
 import ContactSection from './components/ContactSection';
 
 const Contact = () => {

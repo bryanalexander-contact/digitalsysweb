@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import ReCAPTCHA from "react-google-recaptcha";
 import { motion } from 'framer-motion';
 import styles from '../../../css/ContactSection.module.css';
 
 const ContactSection = () => {
   const formRef = useRef();
+  const recaptchaRef = useRef();
   const [formData, setFormData] = useState({ nombre: '', correo: '', mensaje: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,21 +21,45 @@ const ContactSection = () => {
     window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${text}`, '_blank');
   };
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    emailjs.sendForm("service_m3ajams", "template_jv89cv6", formRef.current, "4j67lDlvueyH7ZYpy")
-      .then(() => {
-          alert("¡Mensaje enviado con éxito!");
-          e.target.reset();
-          setFormData({ nombre: '', correo: '', mensaje: '' });
-      }, () => alert("Error al enviar. Intenta por WhatsApp."));
+    setIsSubmitting(true);
+
+    const token = recaptchaRef.current.getValue();
+    if (!token) {
+      alert("Por favor, completa el reCAPTCHA.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, gRecaptchaToken: token }),
+      });
+
+      if (response.ok) {
+        alert("¡Mensaje enviado con éxito!");
+        formRef.current.reset();
+        recaptchaRef.current.reset();
+        setFormData({ nombre: '', correo: '', mensaje: '' });
+      } else {
+        const errorData = await response.json();
+        alert(`Error al enviar: ${errorData.error || 'Usa WhatsApp'}`);
+      }
+    } catch (error) {
+      alert("Error de conexión. Intenta por WhatsApp.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <main className={styles.contactContainer}>
       {/* SECCIÓN HERO INTEGRADA */}
       <section className={styles.contactHero}>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -43,7 +69,7 @@ const ContactSection = () => {
             Diseño web premium y soluciones digitales para marcas que buscan autoridad.
           </p>
         </motion.div>
-        
+
         <div className={styles.heroLinks}>
           <div className={styles.linkGroup}>
             <span>Contacto Directo</span>
@@ -82,8 +108,22 @@ const ContactSection = () => {
               <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" onChange={handleChange} required />
             </div>
 
+            <div className={styles.recaptchaContainer}>
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              />
+            </div>
+
             <div className={styles.buttonGroup}>
-              <button type="submit" className={styles.btnPrimary} aria-label="Enviar formulario por correo">Enviar Correo</button>
+              <button
+                type="submit"
+                className={styles.btnPrimary}
+                disabled={isSubmitting}
+                aria-label="Enviar formulario por correo"
+              >
+                {isSubmitting ? 'Enviando...' : 'Enviar Correo'}
+              </button>
               <button type="button" onClick={sendWhatsApp} className={styles.btnSecondary} aria-label="Contactar por WhatsApp">Vía WhatsApp</button>
             </div>
           </form>
