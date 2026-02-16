@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
-import ReCAPTCHA from "react-google-recaptcha";
+import React, { useState, useRef, useCallback } from 'react';
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { motion } from 'framer-motion';
 import styles from '../../../css/ContactSection.module.css';
 
 const ContactSection = () => {
   const formRef = useRef();
-  const recaptchaRef = useRef();
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [formData, setFormData] = useState({ nombre: '', correo: '', mensaje: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -23,16 +23,17 @@ const ContactSection = () => {
 
   const sendEmail = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    const token = recaptchaRef.current.getValue();
-    if (!token) {
-      alert("Por favor, completa el reCAPTCHA.");
-      setIsSubmitting(false);
+    if (!executeRecaptcha) {
+      alert("reCAPTCHA no está listo aún. Por favor espera.");
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
+      const token = await executeRecaptcha('contact_form');
+
       const response = await fetch('/.netlify/functions/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -42,7 +43,6 @@ const ContactSection = () => {
       if (response.ok) {
         alert("¡Mensaje enviado con éxito!");
         formRef.current.reset();
-        recaptchaRef.current.reset();
         setFormData({ nombre: '', correo: '', mensaje: '' });
       } else {
         const errorData = await response.json();
@@ -106,13 +106,6 @@ const ContactSection = () => {
             <div className={styles.inputGroup}>
               <label htmlFor="mensaje">Mensaje o Detalles del Proyecto</label>
               <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" onChange={handleChange} required />
-            </div>
-
-            <div className={styles.recaptchaContainer}>
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-              />
             </div>
 
             <div className={styles.buttonGroup}>
