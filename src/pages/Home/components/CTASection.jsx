@@ -8,16 +8,16 @@ export default function CTASection() {
       <div className={styles.container}>
         <h2 className={styles.title}>¿Tienes un proyecto en mente?</h2>
         <p className={styles.subtitle}>Hagámoslo realidad con diseño de vanguardia y código sólido.</p>
-        
+
         <div className={styles.buttonGroup}>
           {/* BOTÓN PRINCIPAL: WHATSAPP (CONVERSIÓN RÁPIDA) */}
-          <a href="https://wa.me/tu-numero" className={styles.primaryBtn}>
+          <a href="https://wa.me/56958678410" className={styles.primaryBtn} aria-label="Hablar con Digital Sys Web por WhatsApp">
             <MessageCircle size={20} />
             Hablemos por WhatsApp
           </a>
 
           {/* BOTÓN SECUNDARIO: CORREO */}
-          <a href="mailto:tu-correo@agencia.com" className={styles.secondaryBtn}>
+          <a href="mailto:digitalsysweb@gmail.com" className={styles.secondaryBtn} aria-label="Enviar un correo a Digital Sys Web">
             <Mail size={20} />
             Enviar un correo
           </a>

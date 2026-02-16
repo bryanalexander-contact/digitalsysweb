@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -6,21 +6,27 @@ import styles from '../css/CookieBanner.module.css';
 
 const CookieBanner = () => {
   const [cookies, setCookie] = useCookies(['user_consent']);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const acceptCookies = () => {
-    // Seteamos la cookie por 30 días (estándar internacional)
-    setCookie('user_consent', 'true', { 
-      path: '/', 
+    setCookie('user_consent', 'true', {
+      path: '/',
       maxAge: 2592000,
-      sameSite: 'lax' // Mejora la seguridad y es bien visto por navegadores modernos
+      sameSite: 'lax'
     });
   };
+
+  // Prevent hydration mismatch by returning null during server-side render
+  if (!mounted) return null;
 
   return (
     <AnimatePresence>
       {!cookies.user_consent && (
-        <motion.div 
-          /* SECCIÓN SEO: Usamos 'aside' porque es contenido tangencial y 'role' para accesibilidad */
+        <motion.div
           role="complementary"
           aria-label="Aviso de cookies"
           className={styles.clayBanner}
@@ -31,20 +37,18 @@ const CookieBanner = () => {
         >
           <div className={styles.content}>
             <p>
-              Utilizamos cookies premium para mejorar tu experiencia digital en Digital Sys Web. 
-              {/* SEO: El link tiene un título descriptivo */}
-              <Link 
-                to="/cookies" 
+              Utilizamos cookies premium para mejorar tu experiencia digital en Digital Sys Web.
+              <Link
+                to="/cookies"
                 className={styles.link}
                 title="Leer nuestra política de cookies detallada"
-              > 
+              >
                 Leer más
               </Link>
             </p>
-            
-            {/* ACCESIBILIDAD: El botón tiene un label claro para lectores de pantalla */}
-            <button 
-              onClick={acceptCookies} 
+
+            <button
+              onClick={acceptCookies}
               className={styles.btnAccept}
               aria-label="Aceptar y cerrar aviso de cookies"
             >

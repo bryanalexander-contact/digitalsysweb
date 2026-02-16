@@ -54,9 +54,9 @@ export default function Hero() {
               <Link to="/quote" className={styles.btnQuote}>
                 Cotizar Proyecto
               </Link>
-              <a href="#contact" className={styles.btnContact}>
+              <Link to="/contact" className={styles.btnContact}>
                 Contactar
-              </a>
+              </Link>
             </motion.div>
           </div>
 

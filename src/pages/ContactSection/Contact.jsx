@@ -1,16 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import Seo from '../../components/Seo';
 import ContactSection from './components/ContactSection';
 
 const Contact = () => {
-  const seoData = {
-    title: "Contacto | Digital Sys Web - Agencia de Diseño Web",
-    description: "Contacta con Digital Sys Web. Estamos listos para dar vida a tu próximo proyecto digital. Escríbenos por correo o WhatsApp directo.",
-    url: "https://digitalsysweb.com/contact"
-  };
-
-  // Datos estructurados para que Google muestre información de contacto en el buscador
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -28,7 +22,7 @@ const Contact = () => {
   };
 
   return (
-    <>
+    <GoogleReCaptchaProvider reCaptchaKey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}>
       <Seo
         title="Contacto"
         description="Contacta con Digital Sys Web. Estamos listos para dar vida a tu próximo proyecto digital. Escríbenos por correo o WhatsApp directo."
@@ -37,7 +31,7 @@ const Contact = () => {
         schema={jsonLd}
       />
       <ContactSection />
-    </>
+    </GoogleReCaptchaProvider>
   );
 };
 

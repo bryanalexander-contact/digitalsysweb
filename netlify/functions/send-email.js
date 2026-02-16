@@ -26,23 +26,22 @@ export const handler = async (event) => {
 
         // 2. Send Email via Resend
         const { data, error } = await resend.emails.send({
-            from: 'DigitalSysWeb <onboarding@resend.dev>', // You should use your verified domain here
+            from: 'DigitalSysWeb <onboarding@resend.dev>',
             to: ['digitalsysweb@gmail.com'],
-            subject: `Nuevo mensaje de contacto: ${nombre}`,
-            reply_to: 'digitalsysweb@gmail.com',
+            subject: `Contacto: ${nombre}`,
             html: ` 
-        <h2>Nuevo mensaje de contacto</h2>
-        <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Correo:</strong> ${correo}</p>
+        <h2>Nuevo mensaje</h2>
+        <p><strong>De:</strong> ${nombre} (${correo})</p>
         <p><strong>Mensaje:</strong></p>
         <p>${mensaje}</p>
       `,
         });
 
         if (error) {
+            console.error('Resend Error:', error);
             return {
                 statusCode: 400,
-                body: JSON.stringify({ error }),
+                body: JSON.stringify({ error: error.message || error }),
             };
         }
 

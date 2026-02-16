@@ -34,14 +34,15 @@ const Header = () => {
   return (
     <header className={headerClass} role="banner">
       {/* SEO: El logo debe llevar al inicio y tener un alt descriptivo con palabras clave */}
-      <Link to="/" className={styles.logoContainer} aria-label="Digital Sys Web - Inicio">
+      <Link to="/" className={styles.logoContainer} aria-label="Ir al inicio de Digital Sys Web">
         <img
           src="/logo2.svg"
-          alt="Digital Sys Web Logo - Agencia de Diseño y Desarrollo Web"
+          alt="Digital Sys Web Logo"
           className={styles.headerLogo}
           width="180"
           height="45"
           fetchPriority="high"
+          loading="eager"
         />
       </Link>
 
