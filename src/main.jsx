@@ -1,4 +1,3 @@
-```
 import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
@@ -24,4 +23,3 @@ if (container.hasChildNodes()) {
 } else {
   createRoot(container).render(rootElement);
 }
-```
