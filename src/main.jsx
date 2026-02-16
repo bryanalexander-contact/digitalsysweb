@@ -1,5 +1,6 @@
+```
 import { StrictMode } from 'react'
-import { hydrateRoot } from 'react-dom/client'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import { CookiesProvider } from 'react-cookie'
 import './index.css'
@@ -16,4 +17,11 @@ const rootElement = (
   </StrictMode>
 );
 
-hydrateRoot(container, rootElement);
+// If the container has children, it means it was prerendered (production/build)
+// If it's empty, it's local development (dev server)
+if (container.hasChildNodes()) {
+  hydrateRoot(container, rootElement);
+} else {
+  createRoot(container).render(rootElement);
+}
+```

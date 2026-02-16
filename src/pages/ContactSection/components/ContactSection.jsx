@@ -34,6 +34,7 @@ const ContactSection = () => {
 
     try {
       const token = await executeRecaptcha('contact_form');
+      console.log('reCAPTCHA token generated:', token);
 
       const response = await fetch('/.netlify/functions/send-email', {
         method: 'POST',

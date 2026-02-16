@@ -11,23 +11,25 @@ export const handler = async (event) => {
         const { nombre, correo, mensaje, gRecaptchaToken } = JSON.parse(event.body);
 
         // 1. Verify reCAPTCHA
+        console.log('Verifying token:', gRecaptchaToken ? 'Present' : 'Missing');
         const recaptchaResponse = await fetch(
             `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${gRecaptchaToken}`,
             { method: 'POST' }
         );
         const recaptchaData = await recaptchaResponse.json();
+        console.log('reCAPTCHA result:', recaptchaData);
 
         if (!recaptchaData.success) {
             return {
                 statusCode: 400,
-                body: JSON.stringify({ error: 'reCAPTCHA verification failed' }),
+                body: JSON.stringify({ error: 'reCAPTCHA verification failed', details: recaptchaData }),
             };
         }
 
         // 2. Send Email via Resend
         const { data, error } = await resend.emails.send({
             from: 'DigitalSysWeb <onboarding@resend.dev>',
-            to: ['digitalsysweb@gmail.com'],
+            to: ['bryanalexander.contact@gmail.com'],
             subject: `Contacto: ${nombre}`,
             html: ` 
         <h2>Nuevo mensaje</h2>

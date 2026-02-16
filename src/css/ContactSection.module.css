@@ -10,7 +10,8 @@
 
 /* Hides the reCAPTCHA badge - disclaimer added in JSX */
 :global(.grecaptcha-badge) {
-    visibility: hidden !important;
+    /* visible for debugging as requested by user */
+    opacity: 1;
 }
 
 /* HERO SECTION */
